@@ -23,8 +23,8 @@ public class TestController {
         return("test");
     }
 
-    @RequestMapping(value = "/insert/{dummy}", method = RequestMethod.POST)
-    public void postMappingTest(@PathVariable("dummy") String dummy){
+    @RequestMapping(value = "/insert/{dummydata}", method = RequestMethod.POST)
+    public void postMappingTest(@PathVariable("dummydata") String dummy){
         try{
         TestEntity testInput = TestEntity.builder().dummyData(dummy).build();
         testRepository.save(testInput);
@@ -34,6 +34,5 @@ public class TestController {
             System.out.println(error);
         }
     }
-
 
 }
