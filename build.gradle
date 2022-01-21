@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.6.2'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id 'com.google.cloud.tools.jib' version '3.1.2'
 }
 
 group = 'com.UMC'
@@ -16,6 +17,19 @@ configurations {
 
 repositories {
 	mavenCentral()
+}
+
+jib {
+	from {
+		image = "adoptopenjdk/openjdk11:alpine"
+	}
+	to {
+		image = "sanghoya1/history-test"
+		tags = ["develop"]
+	}
+	container {
+		ports = ['8080']
+	}
 }
 
 dependencies {
