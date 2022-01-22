@@ -19,7 +19,7 @@ public class TestController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getMappingTest(){
-        System.out.println("github action test");
+        System.out.println("github action");
         return("test");
     }
 
