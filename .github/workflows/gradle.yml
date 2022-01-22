@@ -26,10 +26,10 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
     - name: Login to Docker Hub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle jib
