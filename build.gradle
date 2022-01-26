@@ -22,7 +22,6 @@ repositories {
 jib {
 	from {
 		image = "adoptopenjdk/openjdk11:alpine"
-		credHelper = 'ecr-login'
 	}
 	to {
 		image = "aws_account_id.dkr.ecr.region.amazonaws.com/history-application-docker-image"
