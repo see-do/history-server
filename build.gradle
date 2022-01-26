@@ -24,7 +24,7 @@ jib {
 		image = "adoptopenjdk/openjdk11:alpine"
 	}
 	to {
-		image = "969200666863.dkr.ecr.ap-northeast-2.amazonaws.com/history-application-docker-image"
+		image = "aws_account_id.dkr.ecr.region.amazonaws.com/history-application-docker-image"
 		credHelper = 'ecr-login'
 		tags = ["develop"]
 	}
