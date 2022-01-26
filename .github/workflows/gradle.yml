@@ -42,5 +42,5 @@ jobs:
       run: chmod +x gradlew
 
     - name: Build with Gradle jib
-      run: ./gradlew jib
+      run: ./gradlew jib --scan
 
