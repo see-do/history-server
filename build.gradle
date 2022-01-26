@@ -25,7 +25,7 @@ jib {
 		credHelper = 'ecr-login'
 	}
 	to {
-		image = "aws_account_id.dkr.ecr.region.amazonaws.com/history-application-docker-image"
+		image = "aws_account_id.dkr.ecr.region.amazonaws.com/my-base-image"
 		tags = ["develop"]
 	}
 	container {
