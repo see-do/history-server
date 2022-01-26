@@ -25,7 +25,7 @@ jib {
 		credHelper = 'ecr-login'
 	}
 	to {
-		image = "969200666863.dkr.ecr.region.amazonaws.com/history-application-docker-image"
+		image = "https://969200666863.dkr.ecr.np-northeast-2.amazonaws.com/history-application-docker-image"
 		tags = ["develop"]
 	}
 	container {
