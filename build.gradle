@@ -22,10 +22,9 @@ repositories {
 jib {
 	from {
 		image = "adoptopenjdk/openjdk11:alpine"
-		credHelper = 'ecr-login'
 	}
 	to {
-		image = "969200666863.dkr.ecr.np-northeast-2.amazonaws.com/history-application"
+		image = "969200666863.dkr.ecr.ap-northeast-2.amazonaws.com/history-application-docker-image"
 		tags = ["develop"]
 	}
 	container {
