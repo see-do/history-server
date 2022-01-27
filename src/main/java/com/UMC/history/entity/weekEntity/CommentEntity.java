@@ -13,7 +13,6 @@ import java.util.Date;
 @NoArgsConstructor
 @Table(name = "comment")
 public class CommentEntity {
-
     @EmbeddedId
     private CommentEmbeddedId contentEmbeddedId;
 

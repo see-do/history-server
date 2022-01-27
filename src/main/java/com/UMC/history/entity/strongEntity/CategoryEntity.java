@@ -14,7 +14,6 @@ public class CategoryEntity {
     @Id
     private Long categoryIdx;
 
-
     @Column(nullable = false, length = 50)
     private String categoryName;
 

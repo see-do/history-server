@@ -21,4 +21,5 @@ public class CommentEmbeddedId implements Serializable {
     @ManyToOne
     @JoinColumn(name = "userIdx", nullable = false)
     private UserEntity user;
+
 }

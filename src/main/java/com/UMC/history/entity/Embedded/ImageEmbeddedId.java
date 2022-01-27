@@ -14,7 +14,6 @@ public class ImageEmbeddedId implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long imageIdx;
 
-
     @ManyToOne
     @JoinColumn(name = "postIdx", nullable = false)
     private PostEntity post;

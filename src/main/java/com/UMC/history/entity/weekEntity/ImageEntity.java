@@ -11,7 +11,6 @@ import java.util.Date;
 @NoArgsConstructor
 @Table(name = "image")
 public class ImageEntity {
-
     @EmbeddedId
     private ImageEmbeddedId imageEmbeddedId;
 

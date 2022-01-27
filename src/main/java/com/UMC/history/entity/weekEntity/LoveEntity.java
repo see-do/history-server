@@ -12,7 +12,6 @@ import java.util.Date;
 @NoArgsConstructor
 @Table(name = "love")
 public class LoveEntity {
-
     @EmbeddedId
     private LoveEmbeddedId loveEmbeddedId;
 

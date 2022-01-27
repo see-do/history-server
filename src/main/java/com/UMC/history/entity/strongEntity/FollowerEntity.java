@@ -13,6 +13,4 @@ public class FollowerEntity {
     @EmbeddedId
     private FollowerEmbeddedId followerEmbeddedId;
 
-
-
 }

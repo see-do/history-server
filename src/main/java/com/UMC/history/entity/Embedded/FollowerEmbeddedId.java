@@ -20,5 +20,4 @@ public class FollowerEmbeddedId implements Serializable {
     @ManyToOne
     @JoinColumn(name = "from_user", nullable = false)
     private UserEntity user2;
-
 }

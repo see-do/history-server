@@ -25,6 +25,4 @@ public class QuizEntity {
     @Column(nullable = false, length = 500)
     private String solution;
 
-
-
 }

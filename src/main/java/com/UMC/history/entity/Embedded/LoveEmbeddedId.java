@@ -10,7 +10,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Embeddable
 public class LoveEmbeddedId implements Serializable {
-
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long loveIdx;

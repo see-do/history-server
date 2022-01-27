@@ -11,7 +11,6 @@ import java.util.Date;
 @NoArgsConstructor
 @Table(name = "hashtag")
 public class HashtagEntity {
-
     @EmbeddedId
     private HashtagEmbeddedId hashtagEmbeddedId;
 

@@ -17,4 +17,5 @@ public class HashtagEmbeddedId implements Serializable {
     @ManyToOne
     @JoinColumn(name = "postIdx", nullable = false)
     private PostEntity post;
+
 }
