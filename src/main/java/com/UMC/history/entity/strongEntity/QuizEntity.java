@@ -1,4 +1,4 @@
-package com.UMC.history.entity.weekEntity;
+package com.UMC.history.entity.strongEntity;
 
 import com.UMC.history.entity.strongEntity.CategoryEntity;
 
@@ -12,7 +12,7 @@ public class QuizEntity {
     private Long quizIdx;
 
     @ManyToOne
-    @JoinColumn(name = "categoryIdx")
+    @JoinColumn(name = "categoryIdx", nullable = false) //null 값이면 안되는 total constraint 이기 때문
     private CategoryEntity category;
 
     @Column(nullable = false, length = 100)

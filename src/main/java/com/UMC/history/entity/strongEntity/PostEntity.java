@@ -1,7 +1,5 @@
 package com.UMC.history.entity.strongEntity;
 
-
-import com.UMC.history.util.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.NoArgsConstructor;
 
@@ -10,29 +8,31 @@ import java.util.Date;
 
 @Entity
 @NoArgsConstructor
-@Table(name = "user")
-public class UserEntity extends BaseEntity {
+@Table(name = "post")
+public class PostEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userIdx;
+    private Long postIdx;
 
-    @Column(nullable = false, length = 100)
-    private String nickName;
+    @ManyToOne
+    @JoinColumn(name = "userIdx", nullable = false)
+    private UserEntity user;
 
-    @Column(nullable = false, length = 100)
-    private String userid;
+    @ManyToOne
+    @JoinColumn(name = "categoryIdx", nullable = false)
+    private CategoryEntity category;
 
-    @Column(nullable = false)
-    private String password;
+    @Column(nullable = false, length = 30)
+    private String title;
 
-    @Column(nullable = true)
-    private String profileImgUrl;
+    @Column(nullable = false, length = 500)
+    private String contents;
 
-    @Column(columnDefinition = "boolean default false")
-    private Boolean lockScreen;
+    @Column(nullable = false, columnDefinition = "int default 0")
+    private int totalLike;
 
-    @Column(columnDefinition = "boolean default false")
-    private Boolean autoLoginFlag; // boolean 으로 생각되어 String -> boolean 으로 변경
+    @Column(nullable = false, columnDefinition = "int default 0")
+    private int totalClick;
 
     @Column(nullable = false, length = 10, columnDefinition = "char(10) default 'active'")
     private String status;
