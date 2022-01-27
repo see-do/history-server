@@ -30,7 +30,7 @@ public class UserEntity extends BaseEntity {
     private Boolean lockScreen;
 
     @Column(columnDefinition = "boolean default false")
-    private String autoLoginFlag;
+    private Boolean autoLoginFlag;
 
     @Column(length = 10)
     private String status;
