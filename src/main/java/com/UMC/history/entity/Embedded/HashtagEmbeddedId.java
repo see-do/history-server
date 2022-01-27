@@ -9,6 +9,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Embeddable
 public class HashtagEmbeddedId implements Serializable {
+
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long hashtagIdx;

@@ -10,6 +10,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Table(name = "post")
 public class PostEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long postIdx;

@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "quiz")
 public class QuizEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long quizIdx;

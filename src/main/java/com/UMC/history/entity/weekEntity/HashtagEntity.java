@@ -13,7 +13,7 @@ import java.util.Date;
 public class HashtagEntity {
 
     @EmbeddedId
-    private HashtagEmbeddedId hashtagEmbededId;
+    private HashtagEmbeddedId hashtagEmbeddedId;
 
     @Column(nullable = true, length = 45)
     private String tag;

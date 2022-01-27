@@ -9,11 +9,10 @@ import java.io.Serializable;
 
 @NoArgsConstructor
 @Embeddable
-public class LikeEmbeddedId implements Serializable {
-
+public class CommentEmbeddedId implements Serializable {
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long likeIdx;
+    private Long commentIdx;
 
     @ManyToOne
     @JoinColumn(name = "postIdx", nullable = false)
