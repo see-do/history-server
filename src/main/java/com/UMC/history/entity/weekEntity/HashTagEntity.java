@@ -3,11 +3,13 @@ package com.UMC.history.entity.weekEntity;
 import com.UMC.history.entity.strongEntity.PostEntity;
 import com.UMC.history.util.BaseEntity;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
 @NoArgsConstructor
 @Table(name="HashTag")
 public class HashTagEntity extends BaseEntity {

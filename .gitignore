@@ -38,5 +38,6 @@ overridedb.*
 target
 .flattened-pom.xml
 secrets.yml
+aws.yml
 .gradletasknamecache
 .sts4-cache
