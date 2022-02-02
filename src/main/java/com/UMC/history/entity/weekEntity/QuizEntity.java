@@ -1,6 +1,6 @@
 package com.UMC.history.entity.weekEntity;
 
-import com.UMC.history.entity.strongEntity.CategoryEntity;
+import com.UMC.history.util.CategoryEnum;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,9 +17,9 @@ public class QuizEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long quizIdx;
 
-    @ManyToOne
-    @JoinColumn(name = "categoryIdx")
-    private CategoryEntity category;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private CategoryEnum category;
 
     @Column(nullable = false, length = 100)
     private String question;
@@ -31,7 +31,7 @@ public class QuizEntity {
     private String solution;
 
     @Builder
-    public QuizEntity(CategoryEntity category, String question, boolean answer, String solution){
+    public QuizEntity(CategoryEnum category, String question, boolean answer, String solution){
         this.category = category;
         this.question = question;
         this.answer = answer;
