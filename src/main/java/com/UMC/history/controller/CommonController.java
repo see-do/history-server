@@ -6,14 +6,9 @@ import com.UMC.history.entity.strongEntity.PostEntity;
 import com.UMC.history.service.CommonService;
 import com.UMC.history.util.CategoryEnum;
 import com.UMC.history.util.CommonResponse;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -29,9 +24,8 @@ public class CommonController {
 
     @PostMapping(value = "/story") //이야기 글쓰기
     @ResponseStatus(code = HttpStatus.ACCEPTED, reason = "Post success")
-    public void savePost(@RequestPart List<MultipartFile> imageList, @RequestPart("postData") CommonDTO.Post jsonData){
-        jsonData.setImageList(imageList);
-        commonService.savePost(jsonData);
+    public void savePost(@RequestBody CommonDTO.Post post){
+        commonService.savePost(post);
     }
 
     @GetMapping(value = "/story/{postIdx}") // post index로 글 하나만 가져오기
