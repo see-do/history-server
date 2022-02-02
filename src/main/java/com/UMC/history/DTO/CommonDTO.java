@@ -1,10 +1,8 @@
 package com.UMC.history.DTO;
 
 import com.UMC.history.util.CategoryEnum;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -12,6 +10,7 @@ import java.util.List;
 public class CommonDTO {
 
     @Getter
+    @Setter
     @AllArgsConstructor
     @Builder
     public static class Post{
@@ -20,6 +19,7 @@ public class CommonDTO {
         private String title;
         private String contents;
         private List<String> hashTags;
+        private List<MultipartFile> imageList;
 
         public Post(){}
     }
