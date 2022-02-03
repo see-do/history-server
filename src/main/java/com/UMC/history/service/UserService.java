@@ -23,4 +23,18 @@ public class UserService {
                 .build();
         userRepository.save(userEntity);
     }
+
+    public boolean login(@RequestBody UserDTO.User user){
+        UserEntity findUser = userRepository.findByUserId(user.getId());
+        if(findUser == null){
+            return false;
+        }
+        if(!findUser.getPassword().equals(user.getPassword())){
+            return false;
+        }return true;
+    }
+
+    public boolean checkUserId(String userId){
+        return userRepository.existsByUserId(userId);
+    }
 }
