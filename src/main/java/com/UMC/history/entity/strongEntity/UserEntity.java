@@ -51,6 +51,4 @@ public class UserEntity extends BaseEntity {
         this.autoLoginFlag = autoLoginFlag;
         this.status = status;
     }
-
-
 }
