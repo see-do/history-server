@@ -24,7 +24,4 @@ public class LikeEntity extends BaseEntity {
     @JoinColumn(name="postIdx")
     private PostEntity postIdx;
 
-    @Column(length = 10)
-    private String status;
-
 }

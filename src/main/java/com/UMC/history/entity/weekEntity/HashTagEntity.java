@@ -24,13 +24,10 @@ public class HashTagEntity extends BaseEntity {
     @Column(nullable = false)
     private String tag;
 
-    @Column(length = 10)
-    private String status;
 
     @Builder
     public HashTagEntity(String tag, String status, PostEntity post){
         this.tag = tag;
-        this.status = status;
         this.post = post;
     }
 

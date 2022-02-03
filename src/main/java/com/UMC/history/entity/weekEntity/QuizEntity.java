@@ -37,7 +37,4 @@ public class QuizEntity {
         this.answer = answer;
         this.solution = solution;
     }
-
-
-
 }
