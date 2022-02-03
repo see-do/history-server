@@ -49,4 +49,8 @@ public class UserEntity extends BaseEntity {
         this.autoLoginFlag = autoLoginFlag;
 
     }
+
+    public void changeNickName(String nickName) {
+        this.nickName = nickName;
+    }
 }
