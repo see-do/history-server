@@ -23,4 +23,17 @@ public class UserService {
                 .build();
         userRepository.save(userEntity);
     }
+
+    public boolean nickNameExist(@RequestBody UserDTO.User user) {
+        return userRepository.existsByNickName(user.getNickName());
+    }
+
+    public Boolean changeNickName(UserDTO.User user) {
+        UserEntity hasUserId = userRepository.findByUserId(user.getId());// jwt
+        if(hasUserId!=null){
+            hasUserId.changeNickName(user.getNickName());
+            userRepository.save(hasUserId);
+            return true;
+        }else return false;
+    }
 }
