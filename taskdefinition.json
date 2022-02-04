@@ -34,7 +34,11 @@
       "secrets": [
         {
           "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:969200666863:secret:secrets/history-app-IFJIC1",
-          "name": ["aws-access-key", "aws-private-key", "aws-rds-url", "aws-rds-password"]
+          "name": "aws-access-key"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:969200666863:secret:secrets/history-app-IFJIC1",
+          "name": "aws-private-key"
         }
       ],
       "dockerSecurityOptions": null,
