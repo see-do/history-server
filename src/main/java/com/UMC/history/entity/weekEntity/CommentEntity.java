@@ -1,8 +1,10 @@
 package com.UMC.history.entity.weekEntity;
 
+import com.UMC.history.DTO.CommonDTO;
 import com.UMC.history.entity.strongEntity.PostEntity;
 import com.UMC.history.entity.strongEntity.UserEntity;
 import com.UMC.history.util.BaseEntity;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -17,16 +19,19 @@ public class CommentEntity extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "postIdx")
-    private PostEntity postIdx;
+    private PostEntity post;
 
     @ManyToOne
     @JoinColumn(name = "userIdx")
-    private UserEntity userIdx;
+    private UserEntity user;
 
     @Column(nullable = false)
     private String contents;
 
-    @Column(length = 10)
-    private String status;
-
+    @Builder
+    public CommentEntity(PostEntity post, UserEntity user, String contents){
+        this.post = post;
+        this.user = user;
+        this.contents = contents;
+    }
 }

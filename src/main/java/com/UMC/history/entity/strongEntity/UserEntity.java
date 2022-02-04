@@ -38,18 +38,16 @@ public class UserEntity extends BaseEntity {
     @Column(columnDefinition = "boolean default false")
     private boolean autoLoginFlag;
 
-    @Column(length = 10)
-    private String status;
 
     @Builder
-    public UserEntity(String nickName, String userId, String password, String profileImgUrl, boolean lockScreen, boolean autoLoginFlag, String status) {
+    public UserEntity(String nickName, String userId, String password, String profileImgUrl, boolean lockScreen, boolean autoLoginFlag) {
         this.nickName = nickName;
         this.userId = userId;
         this.password = password;
         this.profileImgUrl = profileImgUrl;
         this.lockScreen = lockScreen;
         this.autoLoginFlag = autoLoginFlag;
-        this.status = status;
+
     }
 
     public void changeNickName(String nickName) {

@@ -25,14 +25,11 @@ public class ImageEntity extends BaseEntity {
     @Column(nullable = false, length = 2048)
     private String imgUrl;
 
-    @Column(length = 10)
-    private String status;
 
     @Builder
     public ImageEntity(PostEntity post, String imgUrl, String status){
         this.post = post;
         this.imgUrl = imgUrl;
-        this.status = status;
     }
 
 }
