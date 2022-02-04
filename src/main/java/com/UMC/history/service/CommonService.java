@@ -71,7 +71,7 @@ public class CommonService {
 
     }
 
-    public List<PostEntity> selectByCategory(CategoryEnum category) {
+    public List<CommonDTO.UserProtected> selectByCategory(CategoryEnum category) {
         return postRepository.findByCategory(category);
     }
 
@@ -79,5 +79,10 @@ public class CommonService {
 //        return postRepository.getById(postIdx);
         PostEntity post = postRepository.findById(postIdx).get();
         return post;
+    }
+
+    public List<CommonDTO.UserProtected> storyListByUser(String userId) {
+        UserEntity userEntity = userRepository.findByUserId(userId);
+        return postRepository.findByUser(userEntity);
     }
 }

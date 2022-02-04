@@ -44,4 +44,9 @@ public class CommonController {
    public CommonResponse<List> storyListByCategory(@PathVariable("category") CategoryEnum category){
         return new CommonResponse<List>(commonService.selectByCategory(category), HttpStatus.OK);
     }
+
+    @GetMapping(value = "/stories/byUser/{userId}")
+    public CommonResponse<List> storyListByUser(@PathVariable("userId") String userId){
+        return new CommonResponse<List>(commonService.storyListByUser(userId), HttpStatus.OK);
+    }
 }
