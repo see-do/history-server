@@ -42,5 +42,13 @@ jobs:
       run: chmod +x gradlew
 
     - name: Build with Gradle jib
-      run: ./gradlew jib --scan
+      run: ./gradlew  jib
+
+    - name: Deploy Amazon ECS task definition
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: taskdefinition.json
+        service: history-service
+        cluster: history-cluster
+        wait-for-service-stability: true
 
