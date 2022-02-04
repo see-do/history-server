@@ -45,10 +45,10 @@ jobs:
       run: ./gradlew  jib
 
     - name: Deploy Amazon ECS task definition
-        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-        with:
-          task-definition: task-definition.json
-          service: history-service
-          cluster: history-cluster
-          wait-for-service-stability: true
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: task-definition.json
+        service: history-service
+        cluster: history-cluster
+        wait-for-service-stability: true
 
