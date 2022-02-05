@@ -32,4 +32,13 @@ public class UserController {
         return new CommonResponse<Boolean>(userService.changeNickName(user), HttpStatus.OK);
     }
 
+    @PostMapping(value = "/login")  //로그인
+    public CommonResponse<Boolean> login(@RequestBody UserDTO.User user){
+        return new CommonResponse<Boolean>(userService.login(user), HttpStatus.OK);
+    }
+    /*
+    @GetMapping(value = "/sign/{userId}/exist") //id존재여부 확인
+    public CommonResponse<Boolean> checkUserId(@PathVariable String userId){
+        return new CommonResponse<Boolean>(userService.checkUserId(userId), HttpStatus.OK);
+    }*/
 }
