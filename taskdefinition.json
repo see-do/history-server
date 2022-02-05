@@ -31,7 +31,24 @@
       "dnsServers": null,
       "mountPoints": [],
       "workingDirectory": null,
-      "secrets": null,
+      "secrets": [
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:969200666863:secret:secrets/history-app:aws-access-key-IFJIC1",
+          "name": "aws-access-key"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:969200666863:secret:secrets/history-app:aws-private-key-IFJIC1",
+          "name": "aws-private-key"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:969200666863:secret:secrets/history-app:aws-rds-url-IFJIC1",
+          "name": "aws-rds-url"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:969200666863:secret:secrets/history-app:aws-rds-password-IFJIC1",
+          "name": "aws-rds-password"
+        }
+      ],
       "dockerSecurityOptions": null,
       "memory": null,
       "memoryReservation": 512,
