@@ -36,7 +36,7 @@ jobs:
         AWSRDSPASSWORD: ${{ secrets.AWS_RDS_PASSWORD }}
 
       run: |
-        cd history-server/src/main/resources
+        cd /src/main/resources
         touch application.properties
         echo spring.datasource.url="$AWSACCESSKEY" >> application.properties
         echo spring.datasource.password="$AWSPRIVATEKEY" >> application.properties
