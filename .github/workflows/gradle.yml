@@ -38,10 +38,10 @@ jobs:
       run: |
         cd ./src/main/resources
         touch application.properties
-        echo spring.datasource.url="$AWSACCESSKEY" >> application.properties
-        echo spring.datasource.password="$AWSPRIVATEKEY" >> application.properties
-        echo cloud.aws.credentials.access-key="$AWSRDSURL" >> application.properties
-        echo cloud.aws.credentials.secret-key="$AWSRDSPASSWORD" >> application.properties
+        echo spring.datasource.url="$AWSRDSURL" >> application.properties
+        echo spring.datasource.password="$AWSRDSPASSWORD" >> application.properties
+        echo cloud.aws.credentials.access-key="$AWSACCESSKEY" >> application.properties
+        echo cloud.aws.credentials.secret-key="$AWSPRIVATEKEY" >> application.properties
         cat application.properties
 
     - name: Login to Amazon ECR
