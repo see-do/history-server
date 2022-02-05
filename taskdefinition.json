@@ -31,10 +31,7 @@
       "dnsServers": null,
       "mountPoints": [],
       "workingDirectory": null,
-      "secrets": {
-        "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:969200666863:secret:secrets/history-app-IFJIC1",
-        "name": "aws-access-key"
-      },
+      "secrets": null,
       "dockerSecurityOptions": null,
       "memory": null,
       "memoryReservation": 512,
