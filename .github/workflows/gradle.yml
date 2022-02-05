@@ -29,18 +29,18 @@ jobs:
         aws-region: ${{ secrets.AWS_REGION }}
 
     - name: Create env file
-        env:
-          aws-access-key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-private-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-rds-url: ${{ secrets.AWS_RDS_URL }}
-          aws-rds-password: ${{ secrets.AWS_RDS_PASSWORD }}
+      env:
+        aws-access-key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-private-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-rds-url: ${{ secrets.AWS_RDS_URL }}
+        aws-rds-password: ${{ secrets.AWS_RDS_PASSWORD }}
 
-        run: |
-          touch application.properties
-          echo spring.datasource.url="$aws-rds-url" >> application.properties
-          echo spring.datasource.password="$aws-rds-password" >> application.properties
-          echo cloud.aws.credentials.access-key="$aws-access-key" >> application.properties
-          echo cloud.aws.credentials.secret-key="$aws-private-key" >> application.properties
+      run: |
+        touch application.properties
+        echo spring.datasource.url="$aws-rds-url" >> application.properties
+        echo spring.datasource.password="$aws-rds-password" >> application.properties
+        echo cloud.aws.credentials.access-key="$aws-access-key" >> application.properties
+        echo cloud.aws.credentials.secret-key="$aws-private-key" >> application.properties
           
 
     - name: Login to Amazon ECR
