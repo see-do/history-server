@@ -41,7 +41,7 @@ jobs:
         echo spring.datasource.password="$aws-rds-password" >> application.properties
         echo cloud.aws.credentials.access-key="$aws-access-key" >> application.properties
         echo cloud.aws.credentials.secret-key="$aws-private-key" >> application.properties
-          
+        cat application.properties | head -n 1
 
     - name: Login to Amazon ECR
       id: login-ecr
