@@ -46,6 +46,7 @@ public class CommonService {
                 .contents(post.getContents())
                 .title(post.getTitle())
                 .build();
+
         postRepository.save(postEntity);
 
         List<HashTagEntity> hashTagEntityList = new ArrayList<>();
