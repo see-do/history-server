@@ -45,8 +45,16 @@ public class CommonController {
         return new CommonResponse<List>(commonService.selectByCategory(category), HttpStatus.OK);
     }
 
+    //user가 쓴 글
     @GetMapping(value = "/stories/byUser/{userId}")
     public CommonResponse<List> storyListByUser(@PathVariable("userId") String userId){
         return new CommonResponse<List>(commonService.storyListByUser(userId), HttpStatus.OK);
     }
+
+    //user가 좋아요 한 글
+    @GetMapping(value = "/stories/Liking/{userId}")
+    public CommonResponse<List> LikingUser(@PathVariable("userId") String userId){
+        return new CommonResponse<List>(commonService.postLike(userId), HttpStatus.OK);
+    }
+
 }

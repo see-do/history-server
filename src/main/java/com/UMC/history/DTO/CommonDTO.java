@@ -1,5 +1,6 @@
 package com.UMC.history.DTO;
 
+import com.UMC.history.entity.strongEntity.PostEntity;
 import com.UMC.history.util.CategoryEnum;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,6 +32,8 @@ public class CommonDTO {
         CategoryEnum getCategory();
         String getTitle();
         String getContents();
+        int getTotalClick();
+        int getTotalLike();
         LocalDateTime getCreatedDate();
         LocalDateTime getLastModifedDate();
         List<String> getHashTags();
@@ -41,5 +44,12 @@ public class CommonDTO {
             String getNickName();
             String getProfileImgUrl();
         }
+    }
+
+    public interface LikeUserProtected{
+        Long getLikeIdx();
+        UserProtected getPost();
+        LocalDateTime getCreatedDate();
+        LocalDateTime getLastModifedDate();
     }
 }
