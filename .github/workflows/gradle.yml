@@ -65,6 +65,6 @@ jobs:
       with:
         task-definition: taskdefinition.json
         service: history-service
-        cluster: history-cluster
+        cluster: history
         wait-for-service-stability: true
 
