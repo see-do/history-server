@@ -1,20 +1,13 @@
 package com.UMC.history.service;
 
 import com.UMC.history.DTO.CommonDTO;
-import com.UMC.history.DTO.UserDTO;
 import com.UMC.history.entity.strongEntity.PostEntity;
 import com.UMC.history.entity.strongEntity.UserEntity;
 import com.UMC.history.entity.weekEntity.HashTagEntity;
 import com.UMC.history.entity.weekEntity.ImageEntity;
-import com.UMC.history.repository.HashTagRepository;
-import com.UMC.history.repository.ImageReposotory;
-import com.UMC.history.repository.PostRepository;
-import com.UMC.history.repository.UserRepository;
+import com.UMC.history.repository.*;
 import com.UMC.history.util.CategoryEnum;
 import com.UMC.history.util.S3Uploader;
-import com.amazonaws.Response;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -28,14 +21,16 @@ public class CommonService {
     private final UserRepository userRepository;
     private final HashTagRepository hashTagRepository;
     private final ImageReposotory imageReposotory;
+    private final LikeRepository likeRepository;
     private final S3Uploader s3Uploader;
 
-    public CommonService(PostRepository postRepository, UserRepository userRepository, HashTagRepository hashTagRepository, S3Uploader s3Uploader, ImageReposotory imageReposotory) {
+    public CommonService(PostRepository postRepository, UserRepository userRepository, HashTagRepository hashTagRepository, S3Uploader s3Uploader, ImageReposotory imageReposotory, LikeRepository likeRepository) {
         this.postRepository = postRepository;
         this.userRepository = userRepository;
         this.hashTagRepository = hashTagRepository;
         this.imageReposotory = imageReposotory;
         this.s3Uploader = s3Uploader;
+        this.likeRepository = likeRepository;
     }
 
     public void savePost(@RequestBody CommonDTO.Post post) {
@@ -81,4 +76,16 @@ public class CommonService {
         PostEntity post = postRepository.findById(postIdx).get();
         return post;
     }
+
+    public List<CommonDTO.UserProtected> storyListByUser(String userId) {
+        UserEntity userEntity = userRepository.findByUserId(userId);
+        return postRepository.findByUser(userEntity);
+    }
+
+    public List<CommonDTO.LikeUserProtected> postLike(String userId){
+        //COMMENTS 개수 쿼리는 따로 작성
+        UserEntity userEntity = userRepository.findByUserId(userId);
+        return likeRepository.findByUser(userEntity);
+    }
+
 }
