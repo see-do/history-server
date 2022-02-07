@@ -47,18 +47,21 @@ public class UserService {
             return true;
         }else return false;
     }
-    public boolean login(@RequestBody UserDTO.User user){ //로그인
 
+    public boolean login(@RequestBody UserDTO.User user){
+      
         UserEntity findUser = userRepository.findByUserId(user.getId());
         if(findUser == null){
             return false;
         }
+
         if(!passwordEncoder.matches(user.getPassword(), findUser.getPassword())){ // 그냥 받아온 password를 넣으면 알아서 암호화해서 비교함.
             return false;
         }return true;
     }
-    /*
+    
     public boolean checkUserId(String userId){
         return userRepository.existsByUserId(userId);
-    }*/
+    }
+    
 }
