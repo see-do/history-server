@@ -26,23 +26,11 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-        System.out.println(21);
         UserEntity findUser =userRepository.findByUserId(userId);
         Optional<UserEntity> userEntity= Optional.ofNullable(findUser);
-        System.out.println(22);
         return userEntity
                 .map(this::createUserDetails)
                 .orElseThrow(() -> new UsernameNotFoundException(userId + " -> 데이터베이스에서 찾을 수 없습니다."));
-        /*
-        System.out.println(22);
-        if (findUser==null){
-            System.out.println(23);
-            throw new UsernameNotFoundException(userId + " -> 데이터베이스에서 찾을 수 없습니다.");
-        }
-        System.out.println(24);
-        GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(findUser.getAuthority().toString());
-        System.out.println(25);
-        return new User(findUser.getUserId(), findUser.getPassword(), Collections.singleton(grantedAuthority));*/
     }
 
     // DB 에 User 값이 존재한다면 UserDetails 객체로 만들어서 리턴
