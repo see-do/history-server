@@ -1,6 +1,7 @@
 package com.UMC.history.entity.strongEntity;
 
 
+import com.UMC.history.util.Authority;
 import com.UMC.history.util.BaseEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -38,15 +39,19 @@ public class UserEntity extends BaseEntity {
     @Column(columnDefinition = "boolean default false")
     private boolean autoLoginFlag;
 
+    @Enumerated(EnumType.STRING)
+    @Column(length = 10)
+    private Authority authority;
 
     @Builder
-    public UserEntity(String nickName, String userId, String password, String profileImgUrl, boolean lockScreen, boolean autoLoginFlag) {
+    public UserEntity(String nickName, String userId, String password, String profileImgUrl, boolean lockScreen, boolean autoLoginFlag,Authority authority) {
         this.nickName = nickName;
         this.userId = userId;
         this.password = password;
         this.profileImgUrl = profileImgUrl;
         this.lockScreen = lockScreen;
         this.autoLoginFlag = autoLoginFlag;
+        this.authority = authority;
 
     }
 
