@@ -52,6 +52,9 @@ public class PostEntity extends BaseEntity {
     @Column(columnDefinition = "integer default 0")
     private Integer totalClick;
 
+    @Column(columnDefinition = "integer default 0")
+    private Integer totalComment;
+
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "post")
     private List<ImageEntity> images = new ArrayList<>();
@@ -60,13 +63,14 @@ public class PostEntity extends BaseEntity {
     private List<HashTagEntity> hashTags = new ArrayList<>();
 
     @Builder
-    public PostEntity(UserEntity user, CategoryEnum category, String title, String contents, Integer totalLike, Integer totalClick, List<ImageEntity> images) {
+    public PostEntity(UserEntity user, CategoryEnum category, String title, String contents, Integer totalLike, Integer totalClick, Integer totalComment, List<ImageEntity> images) {
         this.user = user;
         this.category = category;
         this.title = title;
         this.contents = contents;
         this.totalClick = totalClick;
         this.totalLike = totalLike;
+        this.totalComment = totalComment;
         this.images = images;
     }
 }

@@ -33,10 +33,9 @@ public class CommonDTO {
         String getContents();
         int getTotalClick();
         int getTotalLike();
+        int getTotalComment();
         LocalDateTime getCreatedDate();
         LocalDateTime getLastModifedDate();
-        List<String> getHashTags();
-        List<MultipartFile> getImages();
 
         interface UserEntity{
             String getUserId();
