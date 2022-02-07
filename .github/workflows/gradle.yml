@@ -12,7 +12,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build & deploy to ecs:
+  build:
 
     runs-on: ubuntu-latest
 
