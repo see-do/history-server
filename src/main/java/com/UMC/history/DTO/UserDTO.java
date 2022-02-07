@@ -1,12 +1,10 @@
 package com.UMC.history.DTO;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @NoArgsConstructor
 public class UserDTO {
+    @Setter
     @Getter
     @AllArgsConstructor
     @Builder
