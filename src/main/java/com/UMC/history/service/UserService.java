@@ -6,6 +6,7 @@ import com.UMC.history.repository.PostRepository;
 import com.UMC.history.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
@@ -35,8 +36,8 @@ public class UserService {
         userRepository.save(userEntity);
     }
 
-    public boolean nickNameExist(@RequestBody UserDTO.User user) {
-        return userRepository.existsByNickName(user.getNickName());
+    public boolean nickNameExist(String userId) {
+        return userRepository.existsByNickName(userId);
     }
 
     public Boolean changeNickName(UserDTO.User user) {

@@ -22,9 +22,9 @@ public class UserController {
         userService.saveUserData(user);
     }
 
-    @GetMapping(value = "/sign/nickNameExist") //닉네임 중복체크
-    public CommonResponse<Boolean> nickNameExist(@RequestBody UserDTO.User user){
-        return new CommonResponse<Boolean> (userService.nickNameExist(user), HttpStatus.OK);
+    @GetMapping(value = "/sign/{userId}/nickNameExist") //닉네임 중복체크
+    public CommonResponse<Boolean> nickNameExist(@PathVariable String userId){
+        return new CommonResponse<Boolean> (userService.nickNameExist(userId), HttpStatus.OK);
     }
 
     @PatchMapping(value = "/changeNickName") //닉네임 변경
