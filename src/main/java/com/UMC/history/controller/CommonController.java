@@ -37,7 +37,6 @@ public class CommonController {
     @GetMapping(value = "/story/{postIdx}") // post index로 글 하나만 가져오기
     public CommonResponse<PostEntity> storyByPostId(@PathVariable("postIdx") Long postIdx){
        return new CommonResponse<PostEntity>(commonService.selectById(postIdx), HttpStatus.OK);
-//        return commonService.selectById(postIdx);
     }
 
     @GetMapping(value = "/stories/{category}") // 이야기 카테고리에 따라서 10개씩 가져오기
