@@ -7,6 +7,7 @@
 *~
 .#*
 .*.md.html
+application.properties
 .DS_Store
 .attach_pid*
 .classpath
@@ -37,8 +38,6 @@ out
 overridedb.*
 target
 .flattened-pom.xml
-secrets.yml
 aws.yml
 .gradletasknamecache
 .sts4-cache
-.properties
