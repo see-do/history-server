@@ -6,7 +6,6 @@ import com.UMC.history.service.UserService;
 import com.UMC.history.util.CommonResponse;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
