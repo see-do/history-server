@@ -44,7 +44,7 @@ public class UserController {
         if (token.getGrantType()=="Id Error"){
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "invalid ID");
         }else if(token.getGrantType()=="Password Error"){ //비밀번호 오류시
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "invalid Password");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "invalid Password");
         }
         return new CommonResponse<TokenDTO>(token, HttpStatus.OK);
     }
