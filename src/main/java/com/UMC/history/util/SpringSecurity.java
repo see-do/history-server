@@ -47,9 +47,9 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
                 // 로그인, 회원가입 API, 재발급(header에) 는 토큰이 없는 상태에서 요청이 들어오기 때문에 permitAll 설정
                 .and()
                 .authorizeRequests()
-                .antMatchers("/auth/**").permitAll()
                 .antMatchers("/user/login").permitAll()
                 .antMatchers("/user/sign").permitAll()
+                .antMatchers("/user/sign/**").permitAll()
                 .antMatchers("/user/reissue").permitAll()
                 .anyRequest().authenticated()   // 나머지 API 는 전부 인증 필요
 
