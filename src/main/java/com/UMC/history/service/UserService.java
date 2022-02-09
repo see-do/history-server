@@ -65,11 +65,15 @@ public class UserService {
     public TokenDTO login(UserDTO.User user) {
         UserEntity findUser = userRepository.findByUserId(user.getId());
         if(findUser == null){
-            return new TokenDTO();
+            TokenDTO token =new TokenDTO();
+            token.setGrantType("Id Error");
+            return token;
         }
 
         if(!passwordEncoder.matches(user.getPassword(), findUser.getPassword())){ // 그냥 받아온 password를 넣으면 알아서 암호화해서 비교함.
-            return new TokenDTO();
+            TokenDTO token =new TokenDTO();
+            token.setGrantType("Password Error");
+            return token;
         }
         // 1. Login ID/PW 를 기반으로 AuthenticationToken 생성
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user.getId(), user.getPassword());

@@ -12,4 +12,8 @@ public class TokenDTO {
     private String accessToken;
     private String refreshToken;
     private Long accessTokenExpiresIn;
+
+    public void setGrantType(String grantType) {
+        this.grantType = grantType;
+    }
 }

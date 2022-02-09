@@ -7,6 +7,7 @@ import com.UMC.history.util.CommonResponse;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -37,7 +38,15 @@ public class UserController {
 
     @PostMapping(value = "/login") //로그인
     public CommonResponse<TokenDTO> login(@RequestBody UserDTO.User user) {
-        return new CommonResponse<TokenDTO>(userService.login(user), HttpStatus.OK);
+        //로그인 예외처리
+        TokenDTO token=userService.login(user);
+        //아이디 오류시
+        if (token.getGrantType()=="Id Error"){
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "invalid ID");
+        }else if(token.getGrantType()=="Password Error"){ //비밀번호 오류시
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "invalid Password");
+        }
+        return new CommonResponse<TokenDTO>(token, HttpStatus.OK);
     }
     
     @GetMapping(value = "/sign/{userId}/exist") //id존재여부 확인
