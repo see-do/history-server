@@ -9,8 +9,6 @@ import com.UMC.history.entity.weekEntity.ImageEntity;
 import com.UMC.history.repository.*;
 import com.UMC.history.util.CategoryEnum;
 import com.UMC.history.util.S3Uploader;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 

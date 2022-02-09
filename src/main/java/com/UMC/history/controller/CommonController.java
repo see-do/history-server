@@ -2,26 +2,13 @@ package com.UMC.history.controller;
 
 
 import com.UMC.history.DTO.CommonDTO;
-import com.UMC.history.DTO.UserDTO;
 import com.UMC.history.entity.strongEntity.PostEntity;
-import com.UMC.history.entity.strongEntity.UserEntity;
 import com.UMC.history.service.CommonService;
 import com.UMC.history.util.CategoryEnum;
 import com.UMC.history.util.CommonResponse;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
-import org.apache.catalina.User;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.net.Authenticator;
 import java.security.Principal;
 import java.util.List;
 
