@@ -6,15 +6,10 @@ import com.UMC.history.entity.strongEntity.PostEntity;
 import com.UMC.history.service.CommonService;
 import com.UMC.history.util.CategoryEnum;
 import com.UMC.history.util.CommonResponse;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -45,16 +40,25 @@ public class CommonController {
     }
 
     //user가 쓴 글
-    @GetMapping(value = "/stories/byUser/{userId}")
-    public CommonResponse<List> storyListByUser(@PathVariable("userId") String userId){
-        return new CommonResponse<List>(commonService.storyListByUser(userId), HttpStatus.OK);
+    @GetMapping(value = "/stories/byUser")
+    public CommonResponse<List> storyListByUser(Principal principal){
+        return new CommonResponse<List>(commonService.storyListByUser(principal), HttpStatus.OK);
     }
 
     //user가 좋아요 한 글
-    @GetMapping(value = "/stories/Liking/{userId}")
-    public CommonResponse<List> LikingUser(@PathVariable("userId") String userId){
-        return new CommonResponse<List>(commonService.postLike(userId), HttpStatus.OK);
+    // USER id 로 불러오는 것이 아니라 jwt 값을 제공하면 정보를 불러오는 경우로 변경
+    @GetMapping(value = "/stories/Liking")
+    public CommonResponse<List> LikingUser(Principal principal){
+        return new CommonResponse<List>(commonService.postLike(principal), HttpStatus.OK);
     }
+
+    //댓글
+    @PostMapping(value = "story/comment/{postIdx}")
+    @ResponseStatus(code = HttpStatus.ACCEPTED, reason = "Post success")
+    public void postComment(@PathVariable("postIdx") Long postIdx, Principal principal, @RequestBody CommonDTO.Comment comment){
+        commonService.postComment(postIdx, principal, comment);
+    }
+
 
 
 }

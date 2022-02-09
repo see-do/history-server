@@ -50,4 +50,13 @@ public class CommonDTO {
         LocalDateTime getCreatedDate();
         LocalDateTime getLastModifedDate();
     }
+
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    @Builder
+    public static class Comment{
+        private String contents;
+        public Comment(){}
+    }
 }

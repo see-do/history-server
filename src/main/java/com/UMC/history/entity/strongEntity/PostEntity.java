@@ -1,7 +1,6 @@
 package com.UMC.history.entity.strongEntity;
 
 
-import com.UMC.history.DTO.CommonDTO;
 import com.UMC.history.entity.weekEntity.HashTagEntity;
 import com.UMC.history.entity.weekEntity.ImageEntity;
 import com.UMC.history.util.BaseEntity;
@@ -73,4 +72,6 @@ public class PostEntity extends BaseEntity {
         this.totalComment = totalComment;
         this.images = images;
     }
+
+    public void createComment(int totalComment) {this.totalComment = totalComment;}
 }
