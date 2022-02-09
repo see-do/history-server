@@ -6,7 +6,6 @@ import com.UMC.history.service.UserService;
 import com.UMC.history.util.CommonResponse;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -37,8 +36,8 @@ public class UserController {
     }
 
     @PostMapping(value = "/login") //로그인
-    public ResponseEntity<TokenDTO> login(@RequestBody UserDTO.User user) {
-        return ResponseEntity.ok().body(userService.login(user));
+    public CommonResponse<TokenDTO> login(@RequestBody UserDTO.User user) {
+        return new CommonResponse<TokenDTO>(userService.login(user), HttpStatus.OK);
     }
     
     @GetMapping(value = "/sign/{userId}/exist") //id존재여부 확인
@@ -47,8 +46,7 @@ public class UserController {
     }
 
     @PostMapping("/reissue")
-    public ResponseEntity<TokenDTO> reissue(@RequestBody TokenDTO tokenRequestDto) { //RequestBody로 Access Token + Refresh Token를 받는다.
-        return ResponseEntity.ok(userService.reissue(tokenRequestDto));
+    public CommonResponse<TokenDTO> reissue(@RequestBody TokenDTO tokenRequestDto) { //RequestBody로 Access Token + Refresh Token를 받는다.
+        return new CommonResponse<TokenDTO>(userService.reissue(tokenRequestDto), HttpStatus.OK);
     }
-
 }
