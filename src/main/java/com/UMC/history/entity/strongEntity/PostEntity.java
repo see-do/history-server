@@ -73,4 +73,6 @@ public class PostEntity extends BaseEntity {
         this.totalComment = totalComment;
         this.images = images;
     }
+
+    public void createComment(int totalComment) {this.totalComment = totalComment;}
 }
