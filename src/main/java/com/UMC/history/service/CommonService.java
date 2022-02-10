@@ -20,6 +20,7 @@ import java.util.List;
 public class CommonService {
 
     private final int postComment = 1;
+    private final int deleteComment = -1;
     private final PostRepository postRepository;
     private final UserRepository userRepository;
     private final HashTagRepository hashTagRepository;
@@ -121,6 +122,9 @@ public class CommonService {
         UserEntity userEntity = userRepository.findByUserId(principal.getName());
         if(commentEntity.getUser().equals(userEntity)){
             commentRepository.deleteById(commentIdx);
+            PostEntity post = commentEntity.getPost();
+            post.createComment(deleteComment);
+            postRepository.save(post);
             return true;
         }else return false;
     }

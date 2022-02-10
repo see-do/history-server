@@ -51,6 +51,7 @@ public class CommonDTO {
         LocalDateTime getLastModifedDate();
     }
 
+
     @Getter
     @Setter
     @AllArgsConstructor
