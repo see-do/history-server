@@ -31,7 +31,7 @@
       "dnsServers": null,
       "mountPoints": [],
       "workingDirectory": null,
-      "secrets": {},
+      "secrets": null,
       "dockerSecurityOptions": null,
       "memory": null,
       "memoryReservation": 512,
@@ -59,12 +59,12 @@
   ],
   "placementConstraints": [],
   "memory": "2048",
-  "taskRoleArn": null,
+  "taskRoleArn": "arn:aws:iam::969200666863:role/ecsTaskExecutionRole",
   "compatibilities": [
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:969200666863:task-definition/history-task:2",
+  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:969200666863:task-definition/history-task:23",
   "family": "history-task",
   "requiresAttributes": [
     {
@@ -101,6 +101,12 @@
       "targetId": null,
       "targetType": null,
       "value": null,
+      "name": "com.amazonaws.ecs.capability.task-iam-role"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
       "name": "ecs.capability.execution-role-ecr-pull"
     },
     {
@@ -126,7 +132,7 @@
     "cpuArchitecture": null
   },
   "cpu": "1024",
-  "revision": 2,
+  "revision": 23,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
