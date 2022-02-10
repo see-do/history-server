@@ -9,7 +9,7 @@
         "logDriver": "awslogs",
         "secretOptions": null,
         "options": {
-          "awslogs-group": "/ecs/history-task-2",
+          "awslogs-group": "/ecs/history-task-v2",
           "awslogs-region": "ap-northeast-2",
           "awslogs-stream-prefix": "ecs"
         }
@@ -54,18 +54,18 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "history-container-v2"
+      "name": "history-conatiner-v2"
     }
   ],
   "placementConstraints": [],
   "memory": "2048",
-  "taskRoleArn": "arn:aws:iam::969200666863:role/ecsTaskExecutionRole",
+  "taskRoleArn": null,
   "compatibilities": [
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:969200666863:task-definition/history-task-2:1",
-  "family": "history-task-2",
+  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:969200666863:task-definition/history-task-v2:1",
+  "family": "history-task-v2",
   "requiresAttributes": [
     {
       "targetId": null,
@@ -96,12 +96,6 @@
       "targetType": null,
       "value": null,
       "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "com.amazonaws.ecs.capability.task-iam-role"
     },
     {
       "targetId": null,
