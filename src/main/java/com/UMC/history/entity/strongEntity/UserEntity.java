@@ -3,6 +3,7 @@ package com.UMC.history.entity.strongEntity;
 
 import com.UMC.history.util.Authority;
 import com.UMC.history.util.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -27,15 +28,18 @@ public class UserEntity extends BaseEntity {
     @Column(nullable = false, length = 100)
     private String userId;
 
+    @JsonIgnore // 불러오지 않기
     @Column(nullable = false)
     private String password;
 
     @Column(nullable = true)
     private String profileImgUrl;
 
+    @JsonIgnore
     @Column(columnDefinition = "boolean default false")
     private boolean lockScreen;
 
+    @JsonIgnore
     @Column(columnDefinition = "boolean default false")
     private boolean autoLoginFlag;
 
@@ -58,5 +62,4 @@ public class UserEntity extends BaseEntity {
     public void changeNickName(String nickName) {
         this.nickName = nickName;
     }
-    public void getUserId(Long userIdx){this.userIdx = userIdx;}
 }

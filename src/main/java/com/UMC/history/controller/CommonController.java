@@ -59,6 +59,20 @@ public class CommonController {
         commonService.postComment(postIdx, principal, comment);
     }
 
+    //댓글 변경
+    @PatchMapping(value = "story/comment/change/{commentIdx}")
+    public CommonResponse<Boolean> patchComment(@PathVariable("commentIdx") Long commentIdx,
+                             Principal principal, @RequestBody CommonDTO.Comment comment){
+        return new CommonResponse<Boolean>(commonService.patchComment(commentIdx, principal, comment), HttpStatus.OK);
+    }
+
+    //댓글 삭제
+    @DeleteMapping(value = "story/comment/delete/{commentIdx}")
+    public CommonResponse<Boolean> deleteComment(@PathVariable("commentIdx") Long commentIdx, Principal principal){
+        return new CommonResponse<Boolean>(commonService.deleteComment(commentIdx, principal), HttpStatus.ACCEPTED);
+    }
+
+
 
 
 }
