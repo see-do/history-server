@@ -105,4 +105,23 @@ public class CommonService {
         postEntity.createComment(postComment);
         commentRepository.save(commentEntity);
     }
+
+    public boolean patchComment(Long commentIdx, Principal principal, CommonDTO.Comment comment) {
+        CommentEntity commentEntity = commentRepository.findById(commentIdx).get();
+        UserEntity userEntity = userRepository.findByUserId(principal.getName());
+        if(commentEntity.getUser().equals(userEntity)){//comment userIdx와 jwt 의 user가 같다면?
+            commentEntity.changeContents(comment.getContents());
+            commentRepository.save(commentEntity);
+            return true;
+        }else return false;
+    }
+
+    public boolean deleteComment(Long commentIdx, Principal principal) {
+        CommentEntity commentEntity = commentRepository.findById(commentIdx).get();
+        UserEntity userEntity = userRepository.findByUserId(principal.getName());
+        if(commentEntity.getUser().equals(userEntity)){
+            commentRepository.deleteById(commentIdx);
+            return true;
+        }else return false;
+    }
 }

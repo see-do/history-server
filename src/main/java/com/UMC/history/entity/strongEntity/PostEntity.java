@@ -1,6 +1,7 @@
 package com.UMC.history.entity.strongEntity;
 
 
+import com.UMC.history.entity.weekEntity.CommentEntity;
 import com.UMC.history.entity.weekEntity.HashTagEntity;
 import com.UMC.history.entity.weekEntity.ImageEntity;
 import com.UMC.history.util.BaseEntity;
@@ -60,6 +61,9 @@ public class PostEntity extends BaseEntity {
 
     @OneToMany(mappedBy = "post")
     private List<HashTagEntity> hashTags = new ArrayList<>();
+
+    @OneToMany(mappedBy = "post")
+    private List<CommentEntity> comments = new ArrayList<>();
 
     @Builder
     public PostEntity(UserEntity user, CategoryEnum category, String title, String contents, Integer totalLike, Integer totalClick, Integer totalComment, List<ImageEntity> images) {
