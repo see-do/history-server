@@ -124,4 +124,13 @@ public class CommonService {
             return true;
         }else return false;
     }
+
+    public boolean deleteStory(Long postIdx, Principal principal) {
+        PostEntity postEntity = postRepository.findById(postIdx).get();
+        UserEntity userEntity = userRepository.findByUserId(principal.getName());
+        if(postEntity.getUser().equals(userEntity)){
+            postRepository.deleteById(postIdx);
+            return true;
+        }else return false;
+    }
 }
