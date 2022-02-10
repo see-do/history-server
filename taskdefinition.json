@@ -9,7 +9,7 @@
         "logDriver": "awslogs",
         "secretOptions": null,
         "options": {
-          "awslogs-group": "/ecs/history-dev-task",
+          "awslogs-group": "/ecs/history-task",
           "awslogs-region": "ap-northeast-2",
           "awslogs-stream-prefix": "ecs"
         }
@@ -37,7 +37,7 @@
       "memoryReservation": 512,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "969200666863.dkr.ecr.ap-northeast-2.amazonaws.com/history-application-docker-image",
+      "image": "969200666863.dkr.ecr.ap-northeast-2.amazonaws.com/history-application-docker-image:develop",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -54,18 +54,18 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "history-dev-container"
+      "name": "history-container"
     }
   ],
   "placementConstraints": [],
   "memory": "2048",
-  "taskRoleArn": null,
+  "taskRoleArn": "arn:aws:iam::969200666863:role/ecsTaskExecutionRole",
   "compatibilities": [
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:969200666863:task-definition/history-dev-task:1",
-  "family": "history-dev-task",
+  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:969200666863:task-definition/history-task:23",
+  "family": "history-task",
   "requiresAttributes": [
     {
       "targetId": null,
@@ -101,6 +101,12 @@
       "targetId": null,
       "targetType": null,
       "value": null,
+      "name": "com.amazonaws.ecs.capability.task-iam-role"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
       "name": "ecs.capability.execution-role-ecr-pull"
     },
     {
@@ -126,7 +132,7 @@
     "cpuArchitecture": null
   },
   "cpu": "1024",
-  "revision": 1,
+  "revision": 23,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
