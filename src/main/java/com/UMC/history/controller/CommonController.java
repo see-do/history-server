@@ -78,6 +78,7 @@ public class CommonController {
         return new CommonResponse<Boolean>(commonService.deleteStory(postIdx, principal), HttpStatus.OK);
     }
 
+
     //검색한 키워드를 내용에서 찾기
     @GetMapping(value = "story/content/search")
     public CommonResponse<List> searchInContents(@RequestParam(value = "keyword")String keyword){
@@ -90,5 +91,11 @@ public class CommonController {
         return new CommonResponse<List>(commonService.searchInTitle(keyword),HttpStatus.OK);
     }
 
-
+    //좋아요
+    //TRUE: 좋아요 추가 FALSE: 좋아요 취소
+    @PostMapping(value = "story/liking/{postIdx}")
+    public CommonResponse<Boolean> likingPostUser(@PathVariable("postIdx") Long postIdx, Principal principal){
+        return new CommonResponse<Boolean>(commonService.likingPostUser(postIdx, principal), HttpStatus.OK);
+    }
+  
 }

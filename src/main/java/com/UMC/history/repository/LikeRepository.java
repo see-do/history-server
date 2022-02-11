@@ -12,4 +12,5 @@ import java.util.List;
 @Repository
 public interface LikeRepository extends JpaRepository<LikeEntity, Long> {
     List<CommonDTO.LikeUserProtected> findByUser(UserEntity user);
+    LikeEntity findByPostAndUser(PostEntity postEntity, UserEntity userEntity);
 }
