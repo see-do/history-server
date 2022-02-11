@@ -64,7 +64,7 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:969200666863:task-definition/history-task:23",
+  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:969200666863:task-definition/history-task:27",
   "family": "history-task",
   "requiresAttributes": [
     {
@@ -132,7 +132,7 @@
     "cpuArchitecture": null
   },
   "cpu": "1024",
-  "revision": 23,
+  "revision": 27,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
