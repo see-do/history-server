@@ -139,6 +139,15 @@ public class CommonService {
         }else return false;
     }
 
+
+    public List<CommonDTO.UserProtected> searchInContents(String keyword){
+        return postRepository.findByContentsContains(keyword);
+    }
+
+    public List<CommonDTO.UserProtected> searchInTitle(String keyword){
+        return postRepository.findByTitleContains(keyword);
+    }
+
     public boolean likingPostUser(Long postIdx, Principal principal) {
         PostEntity postEntity = postRepository.findById(postIdx).get(); // post 정보 불러오기
         UserEntity userEntity = userRepository.findByUserId(principal.getName()); // user 정보 불러오기
