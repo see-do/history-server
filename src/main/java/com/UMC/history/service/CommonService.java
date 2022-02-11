@@ -6,6 +6,7 @@ import com.UMC.history.entity.strongEntity.UserEntity;
 import com.UMC.history.entity.weekEntity.CommentEntity;
 import com.UMC.history.entity.weekEntity.HashTagEntity;
 import com.UMC.history.entity.weekEntity.ImageEntity;
+import com.UMC.history.entity.weekEntity.LikeEntity;
 import com.UMC.history.repository.*;
 import com.UMC.history.util.CategoryEnum;
 import com.UMC.history.util.S3Uploader;
@@ -19,8 +20,8 @@ import java.util.List;
 @Service
 public class CommonService {
 
-    private final int postComment = 1;
-    private final int deleteComment = -1;
+    private final int plusOne = 1;
+    private final int deleteOne = -1;
     private final PostRepository postRepository;
     private final UserRepository userRepository;
     private final HashTagRepository hashTagRepository;
@@ -103,7 +104,7 @@ public class CommonService {
                 .post(postEntity)
                 .contents(comment.getContents())
                 .build();
-        postEntity.createComment(postComment);
+        postEntity.createComment(plusOne);
         commentRepository.save(commentEntity);
     }
 
@@ -123,7 +124,7 @@ public class CommonService {
         if(commentEntity.getUser().equals(userEntity)){
             commentRepository.deleteById(commentIdx);
             PostEntity post = commentEntity.getPost();
-            post.createComment(deleteComment);
+            post.createComment(deleteOne);
             postRepository.save(post);
             return true;
         }else return false;
@@ -137,4 +138,27 @@ public class CommonService {
             return true;
         }else return false;
     }
+
+    public boolean likingPostUser(Long postIdx, Principal principal) {
+        PostEntity postEntity = postRepository.findById(postIdx).get(); // post 정보 불러오기
+        UserEntity userEntity = userRepository.findByUserId(principal.getName()); // user 정보 불러오기
+        LikeEntity likeEntity = likeRepository.findByPostAndUser(postEntity, userEntity);
+        if(likeEntity == null){
+            LikeEntity likeUser = LikeEntity.builder()
+                    .user(userEntity)
+                    .post(postEntity)
+                    .build();
+            likeRepository.save(likeUser);
+
+            postEntity.createLike(plusOne);
+            postRepository.save(postEntity);
+            return true;
+        }else{
+            likeRepository.deleteById(likeEntity.getLikeIdx());
+            postEntity.createLike(deleteOne);
+            postRepository.save(postEntity);
+            return false;
+        }
+    }
+
 }

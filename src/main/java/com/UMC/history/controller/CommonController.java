@@ -77,6 +77,14 @@ public class CommonController {
         return new CommonResponse<Boolean>(commonService.deleteStory(postIdx, principal), HttpStatus.OK);
     }
 
+    //좋아요
+    //TRUE: 좋아요 추가 FALSE: 좋아요 취소
+    @PostMapping(value = "story/liking/{postIdx}")
+    public CommonResponse<Boolean> likingPostUser(@PathVariable("postIdx") Long postIdx, Principal principal){
+        return new CommonResponse<Boolean>(commonService.likingPostUser(postIdx, principal), HttpStatus.OK);
+    }
+
+
 
 
 }
