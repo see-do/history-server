@@ -3,10 +3,7 @@ package com.UMC.history.service;
 import com.UMC.history.DTO.CommonDTO;
 import com.UMC.history.entity.strongEntity.PostEntity;
 import com.UMC.history.entity.strongEntity.UserEntity;
-import com.UMC.history.entity.weekEntity.CommentEntity;
-import com.UMC.history.entity.weekEntity.HashTagEntity;
-import com.UMC.history.entity.weekEntity.ImageEntity;
-import com.UMC.history.entity.weekEntity.LikeEntity;
+import com.UMC.history.entity.weekEntity.*;
 import com.UMC.history.repository.*;
 import com.UMC.history.util.CategoryEnum;
 import com.UMC.history.util.S3Uploader;
@@ -28,9 +25,10 @@ public class CommonService {
     private final ImageReposotory imageReposotory;
     private final LikeRepository likeRepository;
     private final CommentRepository commentRepository;
+    private final QuizRepository quizRepository;
     private final S3Uploader s3Uploader;
 
-    public CommonService(PostRepository postRepository, UserRepository userRepository, HashTagRepository hashTagRepository, S3Uploader s3Uploader, ImageReposotory imageReposotory, LikeRepository likeRepository, CommentRepository commentRepository) {
+    public CommonService(PostRepository postRepository, UserRepository userRepository, HashTagRepository hashTagRepository, S3Uploader s3Uploader, ImageReposotory imageReposotory, LikeRepository likeRepository, CommentRepository commentRepository,QuizRepository quizRepository) {
         this.postRepository = postRepository;
         this.userRepository = userRepository;
         this.hashTagRepository = hashTagRepository;
@@ -38,6 +36,7 @@ public class CommonService {
         this.s3Uploader = s3Uploader;
         this.likeRepository = likeRepository;
         this.commentRepository = commentRepository;
+        this.quizRepository=quizRepository;
     }
 
     public void savePost(@RequestBody CommonDTO.Post post) {
@@ -174,4 +173,11 @@ public class CommonService {
         }
     }
 
+    public List<QuizEntity> quizList(){
+        return quizRepository.findByOrderByRand().subList(0,5);
+    }
+
+    public List<QuizEntity> quizListByCategory(CategoryEnum category){
+        return quizRepository.findByCategoryOrderByRand(category.name()).subList(0,5);
+    }
 }

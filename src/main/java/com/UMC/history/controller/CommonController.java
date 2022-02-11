@@ -104,5 +104,16 @@ public class CommonController {
     public CommonResponse<Boolean> likingPostUser(@PathVariable("postIdx") Long postIdx, Principal principal){
         return new CommonResponse<Boolean>(commonService.likingPostUser(postIdx, principal), HttpStatus.OK);
     }
-  
+
+    //퀴즈 - 전체에 해당
+    @GetMapping(value = "quiz/all")
+    public CommonResponse<List> quiz(){
+        return new CommonResponse<List>(commonService.quizList(),HttpStatus.OK);
+    }
+
+    //퀴즈 - 카테코리별에 해당당
+   @GetMapping(value = "quiz/{category}")
+    public CommonResponse<List> quiz(@PathVariable("category") CategoryEnum category){
+        return new CommonResponse<List>(commonService.quizListByCategory(category),HttpStatus.OK);
+    }
 }
