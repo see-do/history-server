@@ -34,20 +34,27 @@ public class CommonController {
        return new CommonResponse<PostEntity>(commonService.selectById(postIdx), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/stories/{category}") // 이야기 카테고리에 따라서 10개씩 가져오기
-   public CommonResponse<List> storyListByCategory(@PathVariable("category") CategoryEnum category){
-        return new CommonResponse<List>(commonService.selectByCategory(category), HttpStatus.OK);
+    //최신순 이야기 카테고리에 따라서 10개씩 가져오기
+    @GetMapping(value = "/stories/recent/{category}")
+    public CommonResponse<List> storyListByCategoryOrderByDate(@PathVariable("category") CategoryEnum category){
+        return new CommonResponse<List>(commonService.storyListByCategoryOrderByDate(category), HttpStatus.OK);
     }
 
-    //user가 쓴 글
+    //좋아요 순 이야기 카테고리에 따라서 10개씩 가져오기
+    @GetMapping(value = "/stories/liking/{category}")
+    public CommonResponse<List> storyListByCategoryOrderByLike(@PathVariable("category") CategoryEnum category){
+        return new CommonResponse<List>(commonService.storyListByCategoryOrderByLike(category), HttpStatus.OK);
+    }
+
+    //user가 쓴 글 최신순으로
     @GetMapping(value = "/stories/byUser")
     public CommonResponse<List> storyListByUser(Principal principal){
         return new CommonResponse<List>(commonService.storyListByUser(principal), HttpStatus.OK);
     }
 
-    //user가 좋아요 한 글
+    //user가 좋아요 한 글 최신순으로
     // USER id 로 불러오는 것이 아니라 jwt 값을 제공하면 정보를 불러오는 경우로 변경
-    @GetMapping(value = "/stories/Liking")
+    @GetMapping(value = "/stories/liking")
     public CommonResponse<List> LikingUser(Principal principal){
         return new CommonResponse<List>(commonService.postLike(principal), HttpStatus.OK);
     }
