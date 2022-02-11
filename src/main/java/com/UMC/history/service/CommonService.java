@@ -74,8 +74,12 @@ public class CommonService {
 
     }
 
-    public List<PostEntity> selectByCategory(CategoryEnum category) {
-        return postRepository.findByCategory(category);
+    public List<PostEntity> storyListByCategoryOrderByDate(CategoryEnum category) {
+        return postRepository.findByCategoryOrderByCreatedDateDesc(category);
+    }
+
+    public List<PostEntity> storyListByCategoryOrderByLike(CategoryEnum category) {
+        return postRepository.findByCategoryOrderByTotalLikeDesc(category);
     }
 
     public PostEntity selectById(Long postIdx) {
@@ -86,13 +90,13 @@ public class CommonService {
 
     public List<CommonDTO.UserProtected> storyListByUser(Principal principal) {
         UserEntity userEntity = userRepository.findByUserId(principal.getName());
-        return postRepository.findByUser(userEntity);
+        return postRepository.findByUserOrderByCreatedDateDesc(userEntity);
     }
 
     public List<CommonDTO.LikeUserProtected> postLike(Principal principal){
         //COMMENTS 개수 쿼리는 따로 작성
         UserEntity userEntity = userRepository.findByUserId(principal.getName());
-        return likeRepository.findByUser(userEntity);
+        return likeRepository.findByUserOrderByCreatedDateDesc(userEntity);
     }
 
     public void postComment(Long postIdx, Principal principal, @RequestBody CommonDTO.Comment comment) {
