@@ -62,7 +62,7 @@ jobs:
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: taskdefinition.json
-        service: history-service
+        service: history-application
         cluster: history
         wait-for-service-stability: true
 
