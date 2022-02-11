@@ -18,7 +18,11 @@ public interface PostRepository extends JpaRepository<PostEntity, Long> {
 
     List<PostEntity> findByCategoryOrderByCreatedDateDesc(CategoryEnum category);
 
+    List<PostEntity> findByOrderByCreatedDateDesc();
+
     List<PostEntity> findByCategoryOrderByTotalLikeDesc(CategoryEnum category);
+
+    List<PostEntity> findByOrderByTotalLikeDesc();
 
     List<CommonDTO.UserProtected> findByUserOrderByCreatedDateDesc(UserEntity userEntity);
 }

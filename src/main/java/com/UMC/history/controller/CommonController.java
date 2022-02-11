@@ -40,10 +40,22 @@ public class CommonController {
         return new CommonResponse<List>(commonService.storyListByCategoryOrderByDate(category), HttpStatus.OK);
     }
 
+    //최신순으로 전체 이야기 10개씩 가져오기 (기능명세서의 메인화면 전체에 해당)
+    @GetMapping(value = "/stories/recent/all")
+    public CommonResponse<List> storyListByOrderByDate(){
+        return new CommonResponse<List>(commonService.storyListByOrderByDate(), HttpStatus.OK);
+    }
+
     //좋아요 순 이야기 카테고리에 따라서 10개씩 가져오기
     @GetMapping(value = "/stories/liking/{category}")
     public CommonResponse<List> storyListByCategoryOrderByLike(@PathVariable("category") CategoryEnum category){
         return new CommonResponse<List>(commonService.storyListByCategoryOrderByLike(category), HttpStatus.OK);
+    }
+
+    //좋아요 순으로 전체 이야기 10개씩 가져오기 (기능명세서의 메인화면 전체에 해당)
+    @GetMapping(value = "/stories/liking/all")
+    public CommonResponse<List> storyListByOrderByLike(){
+        return new CommonResponse<List>(commonService.storyListByOrderByLike(), HttpStatus.OK);
     }
 
     //user가 쓴 글 최신순으로

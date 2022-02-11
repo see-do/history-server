@@ -78,8 +78,16 @@ public class CommonService {
         return postRepository.findByCategoryOrderByCreatedDateDesc(category);
     }
 
+    public List<PostEntity> storyListByOrderByDate() {
+        return postRepository.findByOrderByCreatedDateDesc();
+    }
+
     public List<PostEntity> storyListByCategoryOrderByLike(CategoryEnum category) {
         return postRepository.findByCategoryOrderByTotalLikeDesc(category);
+    }
+
+    public List<PostEntity> storyListByOrderByLike() {
+        return postRepository.findByOrderByTotalLikeDesc();
     }
 
     public PostEntity selectById(Long postIdx) {
