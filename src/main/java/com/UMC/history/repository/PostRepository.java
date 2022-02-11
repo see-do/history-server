@@ -5,6 +5,7 @@ import com.UMC.history.entity.strongEntity.PostEntity;
 import com.UMC.history.entity.strongEntity.UserEntity;
 import com.UMC.history.util.CategoryEnum;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,6 +16,9 @@ public interface PostRepository extends JpaRepository<PostEntity, Long> {
     List<CommonDTO.UserProtected> findByUser(UserEntity userIdx);
     List<CommonDTO.UserProtected> findByContentsContains(String keyword);
     List<CommonDTO.UserProtected> findByTitleContains(String keyword);
+
+    @Query(value="SELECT * FROM post order by rand() limit 1",nativeQuery = true)
+    PostEntity findByOrderByRand();
 
     List<PostEntity> findByCategoryOrderByCreatedDateDesc(CategoryEnum category);
 

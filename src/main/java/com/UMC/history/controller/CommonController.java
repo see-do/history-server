@@ -34,6 +34,12 @@ public class CommonController {
        return new CommonResponse<PostEntity>(commonService.selectById(postIdx), HttpStatus.OK);
     }
 
+    //잠금화면
+    @GetMapping(value = "/story/random") // 랜덤하게 글 하나만 가져오기 이때 제목과 이야기 내용만 보내준다.
+    public CommonResponse<CommonDTO.LockPost> storyByRandom(){
+        return new CommonResponse<CommonDTO.LockPost>(commonService.randomById(), HttpStatus.OK);
+    }
+
     //최신순 이야기 카테고리에 따라서 10개씩 가져오기
     @GetMapping(value = "/stories/recent/{category}")
     public CommonResponse<List> storyListByCategoryOrderByDate(@PathVariable("category") CategoryEnum category){

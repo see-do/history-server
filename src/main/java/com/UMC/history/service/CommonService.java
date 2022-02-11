@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class CommonService {
@@ -94,6 +95,14 @@ public class CommonService {
 //        return postRepository.getById(postIdx);
         PostEntity post = postRepository.findById(postIdx).get();
         return post;
+    }
+
+    public CommonDTO.LockPost randomById(){
+        PostEntity post = postRepository.findByOrderByRand();
+        CommonDTO.LockPost lockPost= new CommonDTO.LockPost();
+        lockPost.setTitle(post.getTitle());
+        lockPost.setContents(post.getContents().substring(0,50)+" ...");//내용은 50자까지
+        return lockPost;
     }
 
     public List<CommonDTO.UserProtected> storyListByUser(Principal principal) {
