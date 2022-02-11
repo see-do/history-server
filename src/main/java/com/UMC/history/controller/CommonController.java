@@ -72,6 +72,10 @@ public class CommonController {
         return new CommonResponse<Boolean>(commonService.deleteComment(commentIdx, principal), HttpStatus.ACCEPTED);
     }
 
+    @DeleteMapping(value = "story/delete/{postIdx}")
+    public CommonResponse<Boolean> deleteStory(@PathVariable("postIdx") Long postIdx, Principal principal){
+        return new CommonResponse<Boolean>(commonService.deleteStory(postIdx, principal), HttpStatus.OK);
+    }
 
 
 

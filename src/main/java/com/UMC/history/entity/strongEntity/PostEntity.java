@@ -4,6 +4,7 @@ package com.UMC.history.entity.strongEntity;
 import com.UMC.history.entity.weekEntity.CommentEntity;
 import com.UMC.history.entity.weekEntity.HashTagEntity;
 import com.UMC.history.entity.weekEntity.ImageEntity;
+import com.UMC.history.entity.weekEntity.LikeEntity;
 import com.UMC.history.util.BaseEntity;
 import com.UMC.history.util.CategoryEnum;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -56,14 +57,17 @@ public class PostEntity extends BaseEntity {
     private Integer totalComment;
 
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "post")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "post", orphanRemoval = true)
     private List<ImageEntity> images = new ArrayList<>();
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", orphanRemoval = true)
     private List<HashTagEntity> hashTags = new ArrayList<>();
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", orphanRemoval = true)
     private List<CommentEntity> comments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "post", orphanRemoval = true)
+    private List<LikeEntity> likes = new ArrayList<>();
 
     @Builder
     public PostEntity(UserEntity user, CategoryEnum category, String title, String contents, Integer totalLike, Integer totalClick, Integer totalComment, List<ImageEntity> images) {
