@@ -13,4 +13,7 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<PostEntity, Long> {
     List<PostEntity> findByCategory(CategoryEnum category);
     List<CommonDTO.UserProtected> findByUser(UserEntity userIdx);
+    List<CommonDTO.UserProtected> findByContentsContains(String keyword);
+    List<CommonDTO.UserProtected> findByTitleContains(String keyword);
+
 }

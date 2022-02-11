@@ -72,11 +72,23 @@ public class CommonController {
         return new CommonResponse<Boolean>(commonService.deleteComment(commentIdx, principal), HttpStatus.ACCEPTED);
     }
 
+    //글 삭제
     @DeleteMapping(value = "story/delete/{postIdx}")
     public CommonResponse<Boolean> deleteStory(@PathVariable("postIdx") Long postIdx, Principal principal){
         return new CommonResponse<Boolean>(commonService.deleteStory(postIdx, principal), HttpStatus.OK);
     }
 
+    //검색한 키워드를 내용에서 찾기
+    @GetMapping(value = "story/content/search")
+    public CommonResponse<List> searchInContents(@RequestParam(value = "keyword")String keyword){
+        return new CommonResponse<List>(commonService.searchInContents(keyword),HttpStatus.OK);
+    }
+
+    //검색한 키워드를 제목에서 찾기
+    @GetMapping(value = "story/title/search")
+    public CommonResponse<List> searchInTitle(@RequestParam(value = "keyword")String keyword){
+        return new CommonResponse<List>(commonService.searchInTitle(keyword),HttpStatus.OK);
+    }
 
 
 }

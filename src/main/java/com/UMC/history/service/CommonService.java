@@ -137,4 +137,12 @@ public class CommonService {
             return true;
         }else return false;
     }
+
+    public List<CommonDTO.UserProtected> searchInContents(String keyword){
+        return postRepository.findByContentsContains(keyword);
+    }
+
+    public List<CommonDTO.UserProtected> searchInTitle(String keyword){
+        return postRepository.findByTitleContains(keyword);
+    }
 }
