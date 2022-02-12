@@ -51,6 +51,8 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/sign").permitAll()
                 .antMatchers("/user/sign/**").permitAll()
                 .antMatchers("/user/reissue").permitAll()
+                .antMatchers("/common/story/**").permitAll()
+                .antMatchers("/common/stories/**").permitAll()
                 .anyRequest().authenticated()   // 나머지 API 는 전부 인증 필요 -> 이부분이 들어가면 Postman에서 401,403에러시 body로 응답하는 것이 없음
 
                 // JwtFilter 를 addFilterBefore 로 등록했던 JwtSecurityConfig 클래스를 적용

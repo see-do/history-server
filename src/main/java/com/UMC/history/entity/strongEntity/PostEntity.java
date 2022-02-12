@@ -63,8 +63,8 @@ public class PostEntity extends BaseEntity {
     @OneToMany(mappedBy = "post", orphanRemoval = true)
     private List<HashTagEntity> hashTags = new ArrayList<>();
 
-    @OneToMany(mappedBy = "post", orphanRemoval = true)
-    private List<CommentEntity> comments = new ArrayList<>();
+//    @OneToMany(mappedBy = "post", orphanRemoval = true)
+//    private List<CommentEntity> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "post", orphanRemoval = true)
     private List<LikeEntity> likes = new ArrayList<>();
