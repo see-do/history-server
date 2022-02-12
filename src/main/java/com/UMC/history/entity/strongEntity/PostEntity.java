@@ -66,8 +66,8 @@ public class PostEntity extends BaseEntity {
 //    @OneToMany(mappedBy = "post", orphanRemoval = true)
 //    private List<CommentEntity> comments = new ArrayList<>();
 
-    @OneToMany(mappedBy = "post", orphanRemoval = true)
-    private List<LikeEntity> likes = new ArrayList<>();
+//    @OneToMany(mappedBy = "post", orphanRemoval = true)
+//    private List<LikeEntity> likes = new ArrayList<>();
 
     @Builder
     public PostEntity(UserEntity user, CategoryEnum category, String title, String contents, Integer totalLike, Integer totalClick, Integer totalComment, List<ImageEntity> images) {

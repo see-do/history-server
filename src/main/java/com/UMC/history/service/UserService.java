@@ -49,8 +49,8 @@ public class UserService {
         userRepository.save(userEntity);
     }
 
-    public boolean nickNameExist(String userId) {
-        return userRepository.existsByNickName(userId);
+    public boolean nickNameExist(String nickName) {
+        return userRepository.existsByNickName(nickName);
     }
 
     public Boolean changeNickName(UserDTO.User user) {
