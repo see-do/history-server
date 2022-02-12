@@ -14,8 +14,8 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<PostEntity, Long> {
 //    List<PostEntity> findByCategory(CategoryEnum category);
     List<CommonDTO.UserProtected> findByUser(UserEntity userIdx);
-    List<CommonDTO.UserProtected> findByContentsContains(String keyword);
-    List<CommonDTO.UserProtected> findByTitleContains(String keyword);
+    List<CommonDTO.UserProtected> findByContentsContainsOrderByCreatedDateDesc(String keyword);
+    List<CommonDTO.UserProtected> findByTitleContainsOrderByCreatedDateDesc(String keyword);
 
     @Query(value="SELECT * FROM post order by rand() limit 1",nativeQuery = true)
     PostEntity findByOrderByRand();

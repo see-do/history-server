@@ -104,17 +104,19 @@ public class CommonController {
     }
 
 
-    //검색한 키워드를 내용에서 찾기
+    //검색한 키워드를 내용에서 찾기 최신순
     @GetMapping(value = "story/content/search")
     public CommonResponse<List> searchInContents(@RequestParam(value = "keyword")String keyword){
         return new CommonResponse<List>(commonService.searchInContents(keyword),HttpStatus.OK);
     }
 
-    //검색한 키워드를 제목에서 찾기
+
+    //검색한 키워드를 제목에서 찾기 최신순
     @GetMapping(value = "story/title/search")
     public CommonResponse<List> searchInTitle(@RequestParam(value = "keyword")String keyword){
         return new CommonResponse<List>(commonService.searchInTitle(keyword),HttpStatus.OK);
     }
+
 
     //좋아요
     //TRUE: 좋아요 추가 FALSE: 좋아요 취소

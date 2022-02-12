@@ -161,11 +161,11 @@ public class CommonService {
 
 
     public List<CommonDTO.UserProtected> searchInContents(String keyword){
-        return postRepository.findByContentsContains(keyword);
+        return postRepository.findByContentsContainsOrderByCreatedDateDesc(keyword);
     }
 
     public List<CommonDTO.UserProtected> searchInTitle(String keyword){
-        return postRepository.findByTitleContains(keyword);
+        return postRepository.findByTitleContainsOrderByCreatedDateDesc(keyword);
     }
 
     public boolean likingPostUser(Long postIdx, Principal principal) {
