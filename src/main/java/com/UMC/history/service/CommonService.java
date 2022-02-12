@@ -94,6 +94,8 @@ public class CommonService {
     public PostEntity selectById(Long postIdx) {
 //        return postRepository.getById(postIdx);
         PostEntity post = postRepository.findById(postIdx).get();
+        post.createClick(plusOne);
+        postRepository.save(post);
         return post;
     }
 
