@@ -27,6 +27,7 @@ build
 !/**/src/**/build
 build.log
 dependency-reduced-pom.xml
+application-dev.properties
 dump.rdb
 interpolated*.xml
 lib/
