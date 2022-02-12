@@ -84,6 +84,12 @@ public class CommonController {
         commonService.postComment(postIdx, principal, comment);
     }
 
+    //post에 따른 comment list불러오기
+    @GetMapping(value = "story/comment/{postIdx}")
+    public CommonResponse<List> getCommentByPostId(@PathVariable("postIdx") Long postIdx){
+        return new CommonResponse<List>(commonService.commentListByPostIdx(postIdx), HttpStatus.OK);
+    }
+
     //댓글 변경
     @PatchMapping(value = "story/comment/change/{commentIdx}")
     public CommonResponse<Boolean> patchComment(@PathVariable("commentIdx") Long commentIdx,
