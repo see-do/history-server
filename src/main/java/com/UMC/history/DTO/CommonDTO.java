@@ -25,6 +25,17 @@ public class CommonDTO {
         public Post(){}
     }
 
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    @Builder
+    public static class LockPost{
+        private String title;
+        private String contents;
+
+        public LockPost(){}
+    }
+
     public interface UserProtected{
         Long getPostIdx();
         UserEntity getUser();
