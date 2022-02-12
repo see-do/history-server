@@ -37,6 +37,11 @@ public class UserService {
 
 
     public void saveUserData(@RequestBody UserDTO.User user){
+        //관리자 등록
+        Authority Auth=Authority.ROLE_USER;
+        if (user.getAuthority().equals("admin")){
+            Auth=Authority.ROLE_ADMIN;
+        }
         //encode 는 패스워드를 암호화 할 때 사용
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword); // password를 다시 setting하기 위해 UserEntity에 @Setter추가
@@ -44,7 +49,7 @@ public class UserService {
                 .userId(user.getId())
                 .nickName(user.getNickName())
                 .password(user.getPassword())
-                .authority(Authority.ROLE_USER)
+                .authority(Auth)
                 .build();
         userRepository.save(userEntity);
     }
