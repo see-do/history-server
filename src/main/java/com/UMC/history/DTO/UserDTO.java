@@ -12,6 +12,7 @@ public class UserDTO {
         private String id;
         private String nickName;
         private String password;
+        private String authority;
 
         public User(){}
     }
