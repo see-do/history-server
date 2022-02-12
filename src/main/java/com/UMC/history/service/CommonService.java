@@ -75,20 +75,32 @@ public class CommonService {
 
     }
 
+    // 글자수 처리 완료
     public List<PostEntity> storyListByCategoryOrderByDate(CategoryEnum category) {
-        return postRepository.findByCategoryOrderByCreatedDateDesc(category);
+        List<PostEntity> post =  postRepository.findByCategoryOrderByCreatedDateDesc(category);
+        post.stream().forEach(o -> o.contentsLength(o.getContents()));
+        return post;
     }
 
+    // 글자수 처리 완료
     public List<PostEntity> storyListByOrderByDate() {
-        return postRepository.findByOrderByCreatedDateDesc();
+        List<PostEntity> post =  postRepository.findByOrderByCreatedDateDesc();
+        post.stream().forEach(o -> o.contentsLength(o.getContents()));
+        return post;
     }
 
+    // 글자수 처리 완료
     public List<PostEntity> storyListByCategoryOrderByLike(CategoryEnum category) {
-        return postRepository.findByCategoryOrderByTotalLikeDesc(category);
+        List<PostEntity> post =  postRepository.findByCategoryOrderByTotalLikeDesc(category);
+        post.stream().forEach(o -> o.contentsLength(o.getContents()));
+        return post;
     }
 
+    // 글자수 처리 완료
     public List<PostEntity> storyListByOrderByLike() {
-        return postRepository.findByOrderByTotalLikeDesc();
+        List<PostEntity> post = postRepository.findByOrderByTotalLikeDesc();
+        post.stream().forEach(o -> o.contentsLength(o.getContents()));
+        return post;
     }
 
     public PostEntity selectById(Long postIdx) {
@@ -107,15 +119,21 @@ public class CommonService {
         return lockPost;
     }
 
-    public List<CommonDTO.UserProtected> storyListByUser(Principal principal) {
+    // 글자수 처리 완료
+    public List<PostEntity> storyListByUser(Principal principal) {
         UserEntity userEntity = userRepository.findByUserId(principal.getName());
-        return postRepository.findByUserOrderByCreatedDateDesc(userEntity);
+        List<PostEntity> post = postRepository.findByUserOrderByCreatedDateDesc(userEntity);
+        post.stream().forEach(o -> o.contentsLength(o.getContents()));
+        return post;
     }
 
-    public List<CommonDTO.LikeUserProtected> postLike(Principal principal){
+    // 글자수 처리 완료
+    public List<LikeEntity> postLike(Principal principal){
         //COMMENTS 개수 쿼리는 따로 작성
         UserEntity userEntity = userRepository.findByUserId(principal.getName());
-        return likeRepository.findByUserOrderByCreatedDateDesc(userEntity);
+        List<LikeEntity> like =  likeRepository.findByUserOrderByCreatedDateDesc(userEntity);
+        like.stream().forEach(o -> o.getPost().contentsLength(o.getPost().getContents()));
+        return like;
     }
 
     public void postComment(Long postIdx, Principal principal, @RequestBody CommonDTO.Comment comment) {
@@ -131,9 +149,12 @@ public class CommonService {
         commentRepository.save(commentEntity);
     }
 
-    public List<CommentMappingInterface> commentListByPostIdx(Long postIdx){
+    //글자수 처리 완료
+    public List<CommentEntity> commentListByPostIdx(Long postIdx){
         PostEntity post = postRepository.findById(postIdx).get();
-        return commentRepository.findByPost(post);
+        List<CommentEntity> commentEntities = commentRepository.findByPost(post);
+        commentEntities.stream().forEach(o->o.contentsLength(o.getContents()));
+        return commentEntities;
     }
 
 
@@ -170,12 +191,18 @@ public class CommonService {
     }
 
 
-    public List<CommonDTO.UserProtected> searchInContents(String keyword){
-        return postRepository.findByContentsContainsOrderByCreatedDateDesc(keyword);
+    // 글자수 처리 완료
+    public List<PostEntity> searchInContents(String keyword){
+        List<PostEntity> post = postRepository.findByContentsContainsOrderByCreatedDateDesc(keyword);
+        post.stream().forEach(o -> o.contentsLength(o.getContents()));
+        return post;
     }
 
-    public List<CommonDTO.UserProtected> searchInTitle(String keyword){
-        return postRepository.findByTitleContainsOrderByCreatedDateDesc(keyword);
+    // 글자수 처리 완료
+    public List<PostEntity> searchInTitle(String keyword){
+        List<PostEntity> post = postRepository.findByTitleContainsOrderByCreatedDateDesc(keyword);
+        post.stream().forEach(o -> o.contentsLength(o.getContents()));
+        return post;
     }
 
     public boolean likingPostUser(Long postIdx, Principal principal) {
