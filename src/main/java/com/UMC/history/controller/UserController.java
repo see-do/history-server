@@ -1,7 +1,9 @@
 package com.UMC.history.controller;
 
+import com.UMC.history.DTO.QuizDTO;
 import com.UMC.history.DTO.TokenDTO;
 import com.UMC.history.DTO.UserDTO;
+import com.UMC.history.entity.weekEntity.QuizEntity;
 import com.UMC.history.service.UserService;
 import com.UMC.history.util.CommonResponse;
 
@@ -57,5 +59,12 @@ public class UserController {
     @PostMapping("/reissue")
     public CommonResponse<TokenDTO> reissue(@RequestBody TokenDTO tokenRequestDto) { //RequestBody로 Access Token + Refresh Token를 받는다.
         return new CommonResponse<TokenDTO>(userService.reissue(tokenRequestDto), HttpStatus.OK);
+    }
+
+    //퀴즈 등록 - 단 ROLE_ADMIN유저만 접근 가능
+    @PostMapping("/admin/quiz/register")
+    @ResponseStatus(code = HttpStatus.ACCEPTED, reason = "Quiz Register success")
+    public void registerQuiz(@RequestBody QuizDTO.Quiz quiz) {
+        userService.registerQuiz(quiz);
     }
 }
