@@ -12,10 +12,10 @@ import java.util.List;
 
 @Repository
 public interface PostRepository extends JpaRepository<PostEntity, Long> {
-//    List<PostEntity> findByCategory(CategoryEnum category);
+    //    List<PostEntity> findByCategory(CategoryEnum category);
     List<CommonDTO.UserProtected> findByUser(UserEntity userIdx);
-    List<CommonDTO.UserProtected> findByContentsContainsOrderByCreatedDateDesc(String keyword);
-    List<CommonDTO.UserProtected> findByTitleContainsOrderByCreatedDateDesc(String keyword);
+    List<PostEntity> findByContentsContainsOrderByCreatedDateDesc(String keyword);
+    List<PostEntity> findByTitleContainsOrderByCreatedDateDesc(String keyword);
 
     @Query(value="SELECT * FROM post order by rand() limit 1",nativeQuery = true)
     PostEntity findByOrderByRand();
@@ -28,5 +28,7 @@ public interface PostRepository extends JpaRepository<PostEntity, Long> {
 
     List<PostEntity> findByOrderByTotalLikeDesc();
 
-    List<CommonDTO.UserProtected> findByUserOrderByCreatedDateDesc(UserEntity userEntity);
+//    List<CommonDTO.UserProtected> findByUserOrderByCreatedDateDesc(UserEntity userEntity);
+
+    List<PostEntity> findByUserOrderByCreatedDateDesc(UserEntity userEntity);
 }

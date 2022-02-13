@@ -82,4 +82,9 @@ public class PostEntity extends BaseEntity {
     public void createComment(int totalComment) {this.totalComment += totalComment;}
     public void createLike(int totalLike) {this.totalLike +=totalLike;}
     public void createClick(int totalClick){this.totalClick += totalClick;}
+    public void contentsLength(String contents){
+        if(contents.length() <30){
+            this.contents = contents;
+        } else this.contents = contents.substring(0, 30) + "...";
+    }
 }

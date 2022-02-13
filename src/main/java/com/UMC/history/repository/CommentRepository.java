@@ -10,5 +10,5 @@ import java.util.List;
 
 @Repository
 public interface CommentRepository extends JpaRepository<CommentEntity, Long> {
-    List<CommentMappingInterface> findByPost(PostEntity postIdx);
+    List<CommentEntity> findByPost(PostEntity postIdx);
 }

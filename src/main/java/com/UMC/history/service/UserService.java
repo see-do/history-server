@@ -1,10 +1,13 @@
 package com.UMC.history.service;
 
+import com.UMC.history.DTO.QuizDTO;
 import com.UMC.history.DTO.TokenDTO;
 import com.UMC.history.DTO.UserDTO;
 import com.UMC.history.entity.strongEntity.UserEntity;
+import com.UMC.history.entity.weekEntity.QuizEntity;
 import com.UMC.history.entity.weekEntity.RefreshToken;
 import com.UMC.history.jwt.TokenProvider;
+import com.UMC.history.repository.QuizRepository;
 import com.UMC.history.repository.RefreshTokenRepository;
 import com.UMC.history.repository.UserRepository;
 import com.UMC.history.util.Authority;
@@ -20,15 +23,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class UserService {
 
     private UserRepository userRepository;
-
+    private QuizRepository quizRepository;
     private PasswordEncoder passwordEncoder;
     private AuthenticationManagerBuilder authenticationManagerBuilder;
     private TokenProvider tokenProvider;
     private RefreshTokenRepository refreshTokenRepository;
 
-    public UserService(UserRepository userRepository,PasswordEncoder passwordEncoder,AuthenticationManagerBuilder authenticationManagerBuilder,TokenProvider tokenProvider,RefreshTokenRepository refreshTokenRepository){
+    public UserService(UserRepository userRepository,PasswordEncoder passwordEncoder,AuthenticationManagerBuilder authenticationManagerBuilder,TokenProvider tokenProvider,RefreshTokenRepository refreshTokenRepository,QuizRepository quizRepository){
         this.userRepository = userRepository;
-
+        this.quizRepository=quizRepository;
         this.passwordEncoder=passwordEncoder;
         this.authenticationManagerBuilder =authenticationManagerBuilder;
         this.tokenProvider =tokenProvider;
@@ -37,6 +40,11 @@ public class UserService {
 
 
     public void saveUserData(@RequestBody UserDTO.User user){
+        //관리자 등록
+        Authority Auth=Authority.ROLE_USER;
+        if (user.getAuthority().equals("admin")){
+            Auth=Authority.ROLE_ADMIN;
+        }
         //encode 는 패스워드를 암호화 할 때 사용
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword); // password를 다시 setting하기 위해 UserEntity에 @Setter추가
@@ -44,7 +52,7 @@ public class UserService {
                 .userId(user.getId())
                 .nickName(user.getNickName())
                 .password(user.getPassword())
-                .authority(Authority.ROLE_USER)
+                .authority(Auth)
                 .build();
         userRepository.save(userEntity);
     }
@@ -126,4 +134,13 @@ public class UserService {
         return tokenDto;
     }
 
+    public void registerQuiz(QuizDTO.Quiz quiz){
+        QuizEntity quizEntity = QuizEntity.builder()
+                .category(quiz.getCategory())
+                .question(quiz.getQuestion())
+                .answer(quiz.getAnswer())
+                .solution(quiz.getSolution())
+                .build();
+        quizRepository.save(quizEntity);
+    }
 }
