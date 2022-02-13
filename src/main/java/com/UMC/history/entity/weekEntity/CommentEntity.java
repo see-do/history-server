@@ -4,6 +4,7 @@ import com.UMC.history.DTO.CommonDTO;
 import com.UMC.history.entity.strongEntity.PostEntity;
 import com.UMC.history.entity.strongEntity.UserEntity;
 import com.UMC.history.util.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ public class CommentEntity extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long commentIdx;
 
+    @JsonIgnore // interface를 사용하게 되면 원하는 글자 수만 나오게 하는 것을 할 수 없음
     @ManyToOne
     @JoinColumn(name = "postIdx")
     private PostEntity post;
@@ -38,5 +40,10 @@ public class CommentEntity extends BaseEntity {
     }
     public void changeContents(String contents) {
         this.contents = contents;
+    }
+    public void contentsLength(String contents) {
+        if(contents.length() <30){
+            this.contents = contents;
+        } else this.contents = contents.substring(0, 30) + "...";
     }
 }
