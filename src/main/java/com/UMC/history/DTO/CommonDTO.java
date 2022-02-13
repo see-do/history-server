@@ -19,7 +19,7 @@ public class CommonDTO {
         private CategoryEnum category;
         private String title;
         private String contents;
-        private List<String> hashTags;
+        private String hashTags; //임시 추가
         private List<MultipartFile> imageList;
 
         public Post(){}

@@ -60,17 +60,14 @@ public class PostEntity extends BaseEntity {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "post", orphanRemoval = true)
     private List<ImageEntity> images = new ArrayList<>();
 
-    @OneToMany(mappedBy = "post", orphanRemoval = true)
-    private List<HashTagEntity> hashTags = new ArrayList<>();
+    @Column
+    private String hashTags; // 임시 추가. 원래 밑의 코드 사용
+//    @OneToMany(mappedBy = "post", orphanRemoval = true)가
+//    private List<HashTagEntity> hashTags = new ArrayList<>();
 
-//    @OneToMany(mappedBy = "post", orphanRemoval = true)
-//    private List<CommentEntity> comments = new ArrayList<>();
-
-//    @OneToMany(mappedBy = "post", orphanRemoval = true)
-//    private List<LikeEntity> likes = new ArrayList<>();
 
     @Builder
-    public PostEntity(UserEntity user, CategoryEnum category, String title, String contents, Integer totalLike, Integer totalClick, Integer totalComment, List<ImageEntity> images) {
+    public PostEntity(UserEntity user, CategoryEnum category, String title, String contents, Integer totalLike, Integer totalClick, Integer totalComment, List<ImageEntity> images, String hashTags) {
         this.user = user;
         this.category = category;
         this.title = title;
@@ -79,6 +76,7 @@ public class PostEntity extends BaseEntity {
         this.totalLike = totalLike;
         this.totalComment = totalComment;
         this.images = images;
+        this.hashTags = hashTags;
     }
 
     public void createComment(int totalComment) {this.totalComment += totalComment;}

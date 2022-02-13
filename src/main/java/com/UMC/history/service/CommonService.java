@@ -48,18 +48,20 @@ public class CommonService {
                 .category(post.getCategory())
                 .contents(post.getContents())
                 .title(post.getTitle())
+                .hashTags(post.getHashTags()) //임시 추가
                 .build();
 
         postRepository.save(postEntity);
 
-        List<HashTagEntity> hashTagEntityList = new ArrayList<>();
-        int hashTagSize = post.getHashTags().size();
-        int imageSize = post.getImageList().size();
-        for (int i = 0; i < hashTagSize; i++) { // 추후 map함수로 바꿔야 할 듯
-            HashTagEntity hashTag = HashTagEntity.builder().tag(post.getHashTags().get(i)).post(postEntity).build();
-            hashTagEntityList.add(hashTag);
-        }
+//        List<HashTagEntity> hashTagEntityList = new ArrayList<>();
+//        int hashTagSize = post.getHashTags().size();
+//        for (int i = 0; i < hashTagSize; i++) { // 추후 map함수로 바꿔야 할 듯
+//            HashTagEntity hashTag = HashTagEntity.builder().tag(post.getHashTags().get(i)).post(postEntity).build();
+//            hashTagEntityList.add(hashTag);
+//        }
+//        hashTagRepository.saveAll(hashTagEntityList);
 
+        int imageSize = post.getImageList().size();
         for (int i = 0; i < imageSize; i++) {
             try {
                 String imageUrl = s3Uploader.upload(post.getImageList().get(i), "static");
@@ -71,7 +73,7 @@ public class CommonService {
         }
 
 
-        hashTagRepository.saveAll(hashTagEntityList);
+
 
     }
 
