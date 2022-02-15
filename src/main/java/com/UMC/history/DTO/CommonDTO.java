@@ -1,5 +1,6 @@
 package com.UMC.history.DTO;
 
+import com.UMC.history.entity.weekEntity.HashTagEntity;
 import com.UMC.history.util.CategoryEnum;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,7 +20,7 @@ public class CommonDTO {
         private CategoryEnum category;
         private String title;
         private String contents;
-        private String hashTags; //임시 추가
+        private List<String> hashTags;
         private List<MultipartFile> imageList;
 
         public Post(){}

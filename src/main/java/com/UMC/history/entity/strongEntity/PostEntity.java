@@ -33,10 +33,6 @@ public class PostEntity extends BaseEntity {
     @JoinColumn(name = "userId")
     private UserEntity user;
 
-//    @ManyToOne
-//    @JoinColumn(name = "categoryIdx")
-//    private CategoryEntity category;
-
     @Column
     @Enumerated(EnumType.STRING)
     private CategoryEnum category;
@@ -56,18 +52,15 @@ public class PostEntity extends BaseEntity {
     @Column(columnDefinition = "integer default 0")
     private Integer totalComment;
 
-
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "post", orphanRemoval = true)
     private List<ImageEntity> images = new ArrayList<>();
 
-    @Column
-    private String hashTags; // 임시 추가. 원래 밑의 코드 사용
-//    @OneToMany(mappedBy = "post", orphanRemoval = true)가
-//    private List<HashTagEntity> hashTags = new ArrayList<>();
+    @OneToMany(mappedBy = "post", orphanRemoval = true)
+    private List<HashTagEntity> hashTags = new ArrayList<>();
 
 
     @Builder
-    public PostEntity(UserEntity user, CategoryEnum category, String title, String contents, Integer totalLike, Integer totalClick, Integer totalComment, List<ImageEntity> images, String hashTags) {
+    public PostEntity(UserEntity user, CategoryEnum category, String title, String contents, Integer totalLike, Integer totalClick, Integer totalComment, List<ImageEntity> images, List<HashTagEntity> hashTags) {
         this.user = user;
         this.category = category;
         this.title = title;
