@@ -4,5 +4,5 @@ import lombok.Getter;
 
 @Getter
 public enum CategoryEnum {
-    ASIAN, KOREAN, WESTERN;
+    ASIAN, KOREAN, WESTERN, ETC;
 }
