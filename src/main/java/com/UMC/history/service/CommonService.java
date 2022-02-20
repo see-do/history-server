@@ -4,7 +4,7 @@ import com.UMC.history.DTO.CommonDTO;
 import com.UMC.history.entity.strongEntity.PostEntity;
 import com.UMC.history.entity.strongEntity.UserEntity;
 import com.UMC.history.entity.weekEntity.*;
-import com.UMC.history.mappingInterface.CommentMappingInterface;
+//import com.UMC.history.mappingInterface.CommentMappingInterface;
 import com.UMC.history.repository.*;
 import com.UMC.history.util.CategoryEnum;
 import com.UMC.history.util.S3Uploader;

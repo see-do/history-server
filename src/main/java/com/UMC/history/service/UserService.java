@@ -3,13 +3,14 @@ package com.UMC.history.service;
 import com.UMC.history.DTO.QuizDTO;
 import com.UMC.history.DTO.TokenDTO;
 import com.UMC.history.DTO.UserDTO;
+import com.UMC.history.entity.strongEntity.PostEntity;
 import com.UMC.history.entity.strongEntity.UserEntity;
+import com.UMC.history.entity.weekEntity.CommentEntity;
+import com.UMC.history.entity.weekEntity.LikeEntity;
 import com.UMC.history.entity.weekEntity.QuizEntity;
 import com.UMC.history.entity.weekEntity.RefreshToken;
 import com.UMC.history.jwt.TokenProvider;
-import com.UMC.history.repository.QuizRepository;
-import com.UMC.history.repository.RefreshTokenRepository;
-import com.UMC.history.repository.UserRepository;
+import com.UMC.history.repository.*;
 import com.UMC.history.util.Authority;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -18,6 +19,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import java.security.Principal;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -28,14 +32,23 @@ public class UserService {
     private AuthenticationManagerBuilder authenticationManagerBuilder;
     private TokenProvider tokenProvider;
     private RefreshTokenRepository refreshTokenRepository;
+    private CommentRepository commentRepository;
+    private PostRepository postRepository;
+    private LikeRepository likeRepository;
 
-    public UserService(UserRepository userRepository,PasswordEncoder passwordEncoder,AuthenticationManagerBuilder authenticationManagerBuilder,TokenProvider tokenProvider,RefreshTokenRepository refreshTokenRepository,QuizRepository quizRepository){
+    public UserService(UserRepository userRepository,PasswordEncoder passwordEncoder,
+                       AuthenticationManagerBuilder authenticationManagerBuilder,TokenProvider tokenProvider,
+                       RefreshTokenRepository refreshTokenRepository,QuizRepository quizRepository,
+                       PostRepository postRepository, CommentRepository commentRepository, LikeRepository likeRepository){
         this.userRepository = userRepository;
         this.quizRepository=quizRepository;
         this.passwordEncoder=passwordEncoder;
         this.authenticationManagerBuilder =authenticationManagerBuilder;
         this.tokenProvider =tokenProvider;
         this.refreshTokenRepository =refreshTokenRepository;
+        this.postRepository = postRepository;
+        this.commentRepository = commentRepository;
+        this.likeRepository = likeRepository;
     }
 
 
@@ -142,5 +155,35 @@ public class UserService {
                 .solution(quiz.getSolution())
                 .build();
         quizRepository.save(quizEntity);
+    }
+
+    public UserEntity informationAboutUser(Principal principal) {
+        return userRepository.findByUserId(principal.getName());
+    }
+
+    public Boolean deleteUser(String password, Principal principal) {
+        UserEntity user = userRepository.findByUserId(principal.getName());
+        if(passwordEncoder.matches(password, user.getPassword())){
+            List<CommentEntity> comment = commentRepository.findByUser(user);
+            if(comment!=null){
+                comment.stream().forEach(o ->
+                        commentRepository.deleteById(o.getCommentIdx()));
+            }
+            List<LikeEntity> likes = likeRepository.findByUserOrderByCreatedDateDesc(user);
+            if(likes!=null){
+                likes.stream().forEach(o ->
+                        likeRepository.deleteById(o.getLikeIdx()));
+            }
+            List<PostEntity> posts = postRepository.findByUserOrderByCreatedDateDesc(user);
+            if(posts!=null){
+                posts.stream().forEach(o ->
+                        postRepository.deleteById(o.getPostIdx()));
+            }
+            RefreshToken token = refreshTokenRepository.findByKeyId(user.getUserId()).get();
+            refreshTokenRepository.delete(token);
+            userRepository.deleteById(user.getUserIdx());
+            return true;
+        }else return false;
+
     }
 }

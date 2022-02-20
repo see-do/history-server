@@ -3,6 +3,7 @@ package com.UMC.history.controller;
 import com.UMC.history.DTO.QuizDTO;
 import com.UMC.history.DTO.TokenDTO;
 import com.UMC.history.DTO.UserDTO;
+import com.UMC.history.entity.strongEntity.UserEntity;
 import com.UMC.history.entity.weekEntity.QuizEntity;
 import com.UMC.history.service.UserService;
 import com.UMC.history.util.CommonResponse;
@@ -10,6 +11,8 @@ import com.UMC.history.util.CommonResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.security.Principal;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -60,6 +63,19 @@ public class UserController {
     public CommonResponse<TokenDTO> reissue(@RequestBody TokenDTO tokenRequestDto) { //RequestBody로 Access Token + Refresh Token를 받는다.
         return new CommonResponse<TokenDTO>(userService.reissue(tokenRequestDto), HttpStatus.OK);
     }
+
+    //유저 정보 불러오기 <프로필 정보>
+    @GetMapping(value = "/information")
+    public CommonResponse<UserEntity> informationAboutUser(Principal principal){
+        return new CommonResponse<UserEntity>(userService.informationAboutUser(principal), HttpStatus.OK);
+    }
+
+    //회원 탈퇴
+    @DeleteMapping(value = "/delete/{password}")
+    public CommonResponse<Boolean> deleteUser(@PathVariable ("password") String password, Principal principal){
+        return new CommonResponse<Boolean>(userService.deleteUser(password, principal), HttpStatus.OK);
+    }
+
 
     //퀴즈 등록 - 단 ROLE_ADMIN유저만 접근 가능
     @PostMapping("/admin/quiz/register")
