@@ -186,4 +186,12 @@ public class UserService {
         }else return false;
 
     }
+
+    public Boolean deleteQuiz(Long quizIdx){
+        if (quizRepository.existsByQuizIdx(quizIdx)){
+            quizRepository.deleteById(quizIdx);
+            return true;
+        }
+        else return false;
+    }
 }

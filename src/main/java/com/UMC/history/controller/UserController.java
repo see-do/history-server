@@ -83,4 +83,12 @@ public class UserController {
     public void registerQuiz(@RequestBody QuizDTO.Quiz quiz) {
         userService.registerQuiz(quiz);
     }
+
+
+    //퀴즈 삭제 - 단 ROLE_ADMIN유저만 접근 가능
+    @DeleteMapping("/admin/quiz/delete/{quizIdx}")
+    public CommonResponse<Boolean> deleteQuiz(@PathVariable ("quizIdx") Long quizIdx) {
+        return new CommonResponse<Boolean>(userService.deleteQuiz(quizIdx), HttpStatus.OK);
+    }
+
 }

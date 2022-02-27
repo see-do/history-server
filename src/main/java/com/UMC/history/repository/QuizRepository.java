@@ -17,4 +17,6 @@ public interface QuizRepository extends JpaRepository<QuizEntity, Long> {
 
     @Query(value="SELECT * FROM quiz WHERE category=:categoryName order by rand()",nativeQuery = true)
     List<QuizEntity> findByCategoryOrderByRand(@Param("categoryName")String category);
+
+    Boolean existsByQuizIdx(Long quizIdx);
 }
