@@ -12,10 +12,10 @@ import java.util.List;
 
 @Repository
 public interface QuizRepository extends JpaRepository<QuizEntity, Long> {
-    @Query(value="SELECT * FROM quiz order by rand()",nativeQuery = true)
+    @Query(value="SELECT * FROM quiz order by rand() Limit 5",nativeQuery = true)
     List<QuizEntity> findByOrderByRand();
 
-    @Query(value="SELECT * FROM quiz WHERE category=:categoryName order by rand()",nativeQuery = true)
+    @Query(value="SELECT * FROM quiz WHERE category=:categoryName order by rand() Limit 5",nativeQuery = true)
     List<QuizEntity> findByCategoryOrderByRand(@Param("categoryName")String category);
 
     Boolean existsByQuizIdx(Long quizIdx);

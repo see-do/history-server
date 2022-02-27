@@ -229,10 +229,10 @@ public class CommonService {
     }
 
     public List<QuizEntity> quizList(){
-        return quizRepository.findByOrderByRand().subList(0,5);
+        return quizRepository.findByOrderByRand();
     }
 
     public List<QuizEntity> quizListByCategory(CategoryEnum category){
-        return quizRepository.findByCategoryOrderByRand(category.name()).subList(0,5);
+        return quizRepository.findByCategoryOrderByRand(category.name());
     }
 }
